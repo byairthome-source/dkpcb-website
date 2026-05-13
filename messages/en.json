@@ -1,0 +1,35 @@
+{
+  "Home": {
+    "title": "DKPCB - Professional PCB Manufacturing",
+    "subtitle": "High-quality PCB prototyping and manufacturing services with fast turnaround. Get instant quotes for your PCB projects.",
+    "getQuote": "Get Instant Quote",
+    "contactUs": "Contact Us",
+    "whyChoose": "Why Choose DKPCB?",
+    "quickTurn": "24H Quick Turn",
+    "quickTurnDesc": "Fast prototyping and production with 24-hour turnaround available",
+    "qualityCertified": "Quality Certified",
+    "qualityCertifiedDesc": "ISO 9001, UL, and RoHS certified manufacturing facilities",
+    "globalShipping": "Global Shipping",
+    "globalShippingDesc": "Worldwide delivery with reliable logistics partners",
+    "ourServices": "Our PCB Services",
+    "standardPCB": "Standard PCB",
+    "standardPCBDesc": "Single & double sided PCBs with FR4 material",
+    "multiLayerPCB": "Multi-Layer PCB",
+    "multiLayerPCBDesc": "Up to 32 layers with high-density interconnect",
+    "flexiblePCB": "Flexible PCB",
+    "flexiblePCBDesc": "Flex and rigid-flex circuits for dynamic applications",
+    "aluminumPCB": "Aluminum PCB",
+    "aluminumPCBDesc": "Metal core PCBs for high-power LED applications",
+    "readyToStart": "Ready to Start Your PCB Project?",
+    "uploadFiles": "Upload your Gerber files and get an instant quote today!",
+    "uploadNow": "Upload Files Now"
+  },
+  "Navigation": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About Us",
+    "contact": "Contact",
+    "login": "Login",
+    "getQuote": "Get Quote"
+  }
+}

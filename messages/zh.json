@@ -1,0 +1,35 @@
+{
+  "Home": {
+    "title": "DKPCB - 专业PCB制造",
+    "subtitle": "高品质PCB原型制作和制造服务，快速交付。立即获取PCB项目报价。",
+    "getQuote": "获取即时报价",
+    "contactUs": "联系我们",
+    "whyChoose": "为什么选择DKPCB？",
+    "quickTurn": "24小时快速交付",
+    "quickTurnDesc": "快速原型制作和生产，24小时交货",
+    "qualityCertified": "质量认证",
+    "qualityCertifiedDesc": "ISO 9001、UL和RoHS认证制造设施",
+    "globalShipping": "全球配送",
+    "globalShippingDesc": "可靠的物流合作伙伴，全球配送",
+    "ourServices": "我们的PCB服务",
+    "standardPCB": "标准PCB",
+    "standardPCBDesc": "FR4材料的单面和双面PCB",
+    "multiLayerPCB": "多层PCB",
+    "multiLayerPCBDesc": "高达32层，高密度互连",
+    "flexiblePCB": "柔性PCB",
+    "flexiblePCBDesc": "用于动态应用的柔性和刚挠结合电路",
+    "aluminumPCB": "铝基PCB",
+    "aluminumPCBDesc": "用于大功率LED应用的金属基板PCB",
+    "readyToStart": "准备好开始您的PCB项目了吗？",
+    "uploadFiles": "上传您的Gerber文件，立即获取报价！",
+    "uploadNow": "立即上传"
+  },
+  "Navigation": {
+    "home": "首页",
+    "products": "产品",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "login": "登录",
+    "getQuote": "获取报价"
+  }
+}
