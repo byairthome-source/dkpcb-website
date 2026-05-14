@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { saveInquiry } from '@/lib/inquiries'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -16,8 +17,15 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would normally send the data to your backend
-    console.log('Form submitted:', formData)
+    saveInquiry({
+      type: 'contact',
+      name: formData.name,
+      email: formData.email,
+      company: formData.company,
+      phone: formData.phone,
+      message: formData.message,
+      files: formData.files.map(f => f.name),
+    })
     setSubmitted(true)
   }
 
@@ -197,8 +205,8 @@ export default function Contact() {
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
               <div className="space-y-6">
                 {[
-                  { icon: '📧', title: 'Email', value: 'sales@dkpcb.com', color: 'from-blue-400 to-cyan-400' },
-                  { icon: '📞', title: 'Phone', value: '+86-XXX-XXXX-XXXX', color: 'from-green-400 to-emerald-400' },
+                  { icon: '📧', title: 'Email', value: 'sales09dk@gmail.com', color: 'from-blue-400 to-cyan-400' },
+                  { icon: '📞', title: 'Phone', value: '+86-136-0961-1816', color: 'from-green-400 to-emerald-400' },
                   { icon: '📍', title: 'Address', value: 'Dongguan, Guangdong, China', color: 'from-purple-400 to-pink-400' },
                 ].map((info, index) => (
                   <div key={index} className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/50 transition-colors">

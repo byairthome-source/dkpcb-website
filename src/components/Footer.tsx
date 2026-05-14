@@ -78,8 +78,8 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
             <ul className="space-y-4 text-gray-400">
               {[
-                { icon: '📧', text: 'sales@dkpcb.com' },
-                { icon: '📞', text: '+86-XXX-XXXX-XXXX' },
+                { icon: '📧', text: 'sales09dk@gmail.com' },
+                { icon: '📞', text: '+86-136-0961-1816' },
                 { icon: '📍', text: 'Dongguan, China' },
               ].map((contact, index) => (
                 <li key={index} className="flex items-start gap-3">

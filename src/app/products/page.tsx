@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { saveInquiry } from '@/lib/inquiries'
 
 export default function Products() {
   const [quote, setQuote] = useState({
@@ -18,9 +19,11 @@ export default function Products() {
     totalPrice: 0,
   })
   const [isCalculating, setIsCalculating] = useState(false)
+  const [inquirySent, setInquirySent] = useState(false)
 
   const calculatePrice = () => {
     setIsCalculating(true)
+    setInquirySent(false)
     
     setTimeout(() => {
       let basePrice = 0
@@ -50,6 +53,28 @@ export default function Products() {
       setQuote({ ...quote, totalPrice: Math.round(basePrice * 100) / 100 })
       setIsCalculating(false)
     }, 800)
+  }
+
+  const handleSendInquiry = () => {
+    const unitPrice = quote.totalPrice > 0 ? Math.round((quote.totalPrice / quote.quantity) * 100) / 100 : 0
+    saveInquiry({
+      type: 'quote',
+      pcbType: quote.pcbType,
+      layers: String(quote.layers),
+      width: String(quote.width),
+      height: String(quote.height),
+      quantity: String(quote.quantity),
+      thickness: quote.thickness,
+      material: quote.material,
+      copperWeight: quote.copperWeight,
+      surfaceFinish: quote.surfaceFinish,
+      soldermaskColor: quote.solderColor,
+      silkscreenColor: quote.silkscreenColor,
+      unitPrice,
+      totalPrice: quote.totalPrice,
+      leadTime: '3-5 Days',
+    })
+    setInquirySent(true)
   }
 
   const inputClass = "w-full border border-gray-200 rounded-xl px-4 py-3 bg-gray-50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all duration-300 outline-none"
@@ -294,8 +319,16 @@ export default function Products() {
                       </div>
                     </div>
 
-                    <button className="mt-6 w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg">
-                      Proceed to Order
+                    <button 
+                      onClick={handleSendInquiry}
+                      disabled={inquirySent}
+                      className="mt-6 w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-green-500 disabled:to-green-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
+                    >
+                      {inquirySent ? (
+                        <><span>✓</span> Inquiry Sent!</>
+                      ) : (
+                        <><span>📧</span> Send Inquiry</>
+                      )}
                     </button>
                     <button className="mt-3 w-full border border-gray-300 text-gray-700 py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-gray-50">
                       Download Quote
