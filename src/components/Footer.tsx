@@ -2,64 +2,69 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1a2332] text-white py-16 relative overflow-hidden">
-      {/* Subtle circuit background */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='0.5'%3E%3Cpath d='M0 30h60M30 0v60'/%3E%3Ccircle cx='30' cy='30' r='5'/%3E%3C/g%3E%3C/svg%3E")`,
-      }}></div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+    <footer style={{ background: '#1a2b4a', color: '#ffffff', paddingTop: '64px', paddingBottom: '32px' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+        {/* Top Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 1fr', gap: '48px', marginBottom: '48px' }}>
           {/* Company Info */}
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <img 
-                src="/pages/dkpcb-logo.png" 
-                alt="DKPCB Logo" 
-                className="h-9 w-auto brightness-0 invert"
-              />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
+              <img src="/pages/dkpcb-logo.png" alt="DKPCB" style={{ height: '32px', width: 'auto', filter: 'brightness(0) invert(1)' }} />
               <div>
-                <span className="text-lg font-bold">DKPCB</span>
-                <span className="block text-[10px] text-white/40 tracking-widest uppercase -mt-0.5">Solutions</span>
+                <div style={{ fontSize: '1rem', fontWeight: 800, color: '#ffffff', lineHeight: 1 }}>DKPCB</div>
+                <div style={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Solutions</div>
               </div>
             </div>
-            <p className="text-white/50 text-sm leading-relaxed mb-6">
+            <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.82rem', lineHeight: 1.7, marginBottom: '20px' }}>
               One-Stop EMS solutions for global clients. PCB manufacturing, assembly, and enclosures — from prototype to mass production.
             </p>
-            <div className="flex gap-3">
-              {[
-                { label: 'LinkedIn', icon: 'in' },
-                { label: 'Twitter', icon: 'X' },
-                { label: 'YouTube', icon: '▶' },
-              ].map((s) => (
-                <div 
-                  key={s.label}
-                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#0066cc]/30 border border-white/10 hover:border-[#0066cc]/30 flex items-center justify-center text-xs font-bold text-white/60 hover:text-white transition-all duration-200 cursor-pointer"
-                  title={s.label}
+            <div style={{ display: 'flex', gap: '10px' }}>
+              {['LinkedIn', 'Twitter', 'YouTube'].map((s) => (
+                <div
+                  key={s}
+                  style={{
+                    width: '34px',
+                    height: '34px',
+                    borderRadius: '8px',
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.65rem',
+                    fontWeight: 700,
+                    color: 'rgba(255,255,255,0.5)',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                  }}
                 >
-                  {s.icon}
+                  {s[0]}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Navigation */}
           <div>
-            <h4 className="text-sm font-semibold text-white/80 uppercase tracking-wider mb-6">Navigation</h4>
-            <ul className="space-y-3">
+            <h4 style={{ fontSize: '0.78rem', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '18px' }}>Navigation</h4>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {[
                 { label: 'Home', href: '/' },
-                { label: 'Products & Quote', href: '/products' },
+                { label: 'PCB Service', href: '/products' },
                 { label: 'About Us', href: '/about' },
                 { label: 'Contact', href: '/contact' },
                 { label: 'Admin Portal', href: '/login' },
               ].map((link) => (
                 <li key={link.href}>
-                  <Link 
-                    href={link.href} 
-                    className="text-white/40 hover:text-white text-sm transition-colors duration-200 inline-flex items-center gap-2 group"
+                  <Link
+                    href={link.href}
+                    style={{
+                      color: 'rgba(255,255,255,0.45)',
+                      fontSize: '0.82rem',
+                      textDecoration: 'none',
+                      transition: 'color 0.2s ease',
+                    }}
                   >
-                    <span className="w-0 group-hover:w-4 transition-all duration-300 overflow-hidden text-[#c49a2b]">→</span>
                     {link.label}
                   </Link>
                 </li>
@@ -69,19 +74,19 @@ export default function Footer() {
 
           {/* PCB Services */}
           <div>
-            <h4 className="text-sm font-semibold text-white/80 uppercase tracking-wider mb-6">PCB Services</h4>
-            <ul className="space-y-3 text-white/40 text-sm">
+            <h4 style={{ fontSize: '0.78rem', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '18px' }}>PCB Services</h4>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {[
-                'Multi-Layer PCB (1-32 Layers)',
+                'Multi-Layer PCB (1-32L)',
                 'HDI PCB & Any Layer',
                 'RF / Microwave PCB',
                 'Heavy Copper PCB',
-                'Flexible / Rigid-Flex PCB',
-                'Ceramic PCB (Alumina / AlN)',
+                'Flexible / Rigid-Flex',
+                'Ceramic PCB',
                 'PCB Assembly (PCBA)',
                 'Enclosures & CNC Parts',
               ].map((service, i) => (
-                <li key={i} className="hover:text-white/70 transition-colors cursor-default">
+                <li key={i} style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.82rem' }}>
                   {service}
                 </li>
               ))}
@@ -90,39 +95,32 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-sm font-semibold text-white/80 uppercase tracking-wider mb-6">Contact Us</h4>
-            <ul className="space-y-4 text-white/50 text-sm">
+            <h4 style={{ fontSize: '0.78rem', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '18px' }}>Contact Us</h4>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
                 { icon: '📧', text: 'sales09dk@gmail.com' },
                 { icon: '📞', text: '+86-136-0961-1816' },
-                { icon: '🏭', text: 'Dongguan, Guangdong, China' },
-                { icon: '🕐', text: 'Response: within 2 hours' },
+                { icon: '📍', text: 'Dongguan, Guangdong, China' },
+                { icon: '🕐', text: 'Response within 2 hours' },
               ].map((c, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 mt-0.5">{c.icon}</span>
+                <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', color: 'rgba(255,255,255,0.5)', fontSize: '0.82rem' }}>
+                  <span style={{ flexShrink: 0, fontSize: '0.9rem' }}>{c.icon}</span>
                   <span>{c.text}</span>
                 </li>
               ))}
             </ul>
-            <div className="mt-6 p-4 rounded-xl bg-white/[0.04] border border-white/[0.06]">
-              <div className="text-xs text-white/30 uppercase tracking-wider mb-2">Business Hours</div>
-              <div className="text-sm text-white/50">Mon – Fri: 9:00 – 18:00 (CST)</div>
-              <div className="text-sm text-white/50">Sat – Sun: Closed</div>
-            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-white/30">
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '24px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.35)' }}>
             © 2026 DKPCB Solutions. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <span className="text-xs text-white/20">ISO 9001 Certified</span>
-            <span className="text-xs text-white/20">|</span>
-            <span className="text-xs text-white/20">IPC Class 2 & 3</span>
-            <span className="text-xs text-white/20">|</span>
-            <span className="text-xs text-white/20">RoHS Compliant</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            {['ISO 9001 Certified', 'IPC Class 2 & 3', 'RoHS Compliant'].map((item, i) => (
+              <span key={i} style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.3)' }}>{item}</span>
+            ))}
           </div>
         </div>
       </div>

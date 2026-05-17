@@ -31,36 +31,64 @@ export default function Contact() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFormData({
-        ...formData,
-        files: Array.from(e.target.files)
-      })
+      setFormData({ ...formData, files: Array.from(e.target.files) })
     }
+  }
+
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    border: '1px solid #e5e7eb',
+    borderRadius: '8px',
+    padding: '12px 14px',
+    background: '#f9fafb',
+    fontSize: '0.88rem',
+    color: '#374151',
+    outline: 'none',
+    transition: 'all 0.2s ease',
+  }
+
+  const labelStyle: React.CSSProperties = {
+    display: 'block',
+    fontSize: '0.82rem',
+    fontWeight: 600,
+    color: '#374151',
+    marginBottom: '6px',
   }
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 flex items-center justify-center py-12">
-        <div className="glass rounded-3xl p-12 text-center max-w-md shadow-2xl animate-scale-in">
-          <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-white text-4xl">
+      <div style={{ minHeight: '100vh', background: '#f5f7fa', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '80px 24px' }}>
+        <div style={{
+          background: '#ffffff', borderRadius: '16px', padding: '48px', textAlign: 'center', maxWidth: '400px', width: '100%',
+          border: '1px solid #e5e7eb', boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+        }}>
+          <div style={{
+            width: '64px', height: '64px', margin: '0 auto 20px', borderRadius: '50%',
+            background: '#dcfce7', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '1.8rem',
+          }}>
             ✓
           </div>
-          <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-            Thank You!
-          </h2>
-          <p className="text-gray-600 mb-8">
+          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#1a2332', marginBottom: '10px' }}>Thank You!</h2>
+          <p style={{ color: '#6b7280', marginBottom: '28px', fontSize: '0.9rem' }}>
             Your inquiry has been submitted successfully. Our team will contact you within 24 hours.
           </p>
-          <div className="space-y-3">
-            <Link 
-              href="/" 
-              className="block w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <Link href="/" style={{
+              display: 'block', textAlign: 'center',
+              background: '#0066cc', color: 'white', fontWeight: 600,
+              padding: '12px 0', borderRadius: '8px', textDecoration: 'none',
+              transition: 'all 0.2s ease',
+            }}
             >
               Back to Home
             </Link>
-            <Link 
-              href="/products" 
-              className="block w-full border-2 border-gray-300 text-gray-700 hover:bg-gray-50 px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+            <Link href="/products" style={{
+              display: 'block', textAlign: 'center',
+              border: '1.5px solid #e5e7eb', color: '#4b5563', fontWeight: 600,
+              padding: '12px 0', borderRadius: '8px', textDecoration: 'none',
+              transition: 'all 0.2s ease',
+            }}
             >
               Get Another Quote
             </Link>
@@ -71,151 +99,127 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 py-12">
-      {/* Background Decoration */}
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-10 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{animationDelay: '3s'}}></div>
-      </div>
-
-      <div className="container mx-auto px-4">
+    <div style={{ minHeight: '100vh', background: '#f5f7fa', paddingTop: '80px', paddingBottom: '60px' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         {/* Header */}
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1 rounded-full bg-orange-100 text-orange-600 font-semibold text-sm mb-4">
-            📧 Get in Touch
-          </span>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-900 to-purple-700 bg-clip-text text-transparent">
+        <div style={{ textAlign: 'center', marginBottom: '40px', paddingTop: '20px' }}>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: '6px',
+            fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+            color: '#ff6b00', padding: '4px 14px', background: 'rgba(255,107,0,0.08)',
+            borderRadius: '20px', marginBottom: '12px',
+          }}>
+            <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#ff6b00', display: 'inline-block' }}/>
+            Get in Touch
+          </div>
+          <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#1a2332', marginBottom: '8px' }}>
             Contact Us
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p style={{ color: '#6b7280', fontSize: '0.95rem', maxWidth: '480px', margin: '0 auto' }}>
             Have questions about our PCB services? Need a custom quote? Our team is ready to help you.
           </p>
         </div>
-        
-        <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '28px', maxWidth: '1000px', margin: '0 auto' }}>
           {/* Contact Form */}
-          <div className="glass rounded-3xl p-8 shadow-xl">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white">
-                📧
-              </span>
+          <div style={{ background: '#ffffff', borderRadius: '16px', padding: '32px', border: '1px solid #e5e7eb', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}>
+            <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1a2332', marginBottom: '24px' }}>
               Send Us a Message
             </h2>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="group">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Name *</label>
-                <input 
-                  type="text" 
-                  required
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-white/50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all duration-300 outline-none"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="Your name"
-                />
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div>
+                <label style={labelStyle}>Name *</label>
+                <input type="text" required style={inputStyle}
+                  value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="Your name" />
               </div>
 
-              <div className="group">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
-                <input 
-                  type="email" 
-                  required
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-white/50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all duration-300 outline-none"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="your@email.com"
-                />
+              <div>
+                <label style={labelStyle}>Email *</label>
+                <input type="email" required style={inputStyle}
+                  value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="your@email.com" />
               </div>
 
-              <div className="group">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Company</label>
-                <input 
-                  type="text" 
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-white/50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all duration-300 outline-none"
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  placeholder="Company name"
-                />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div>
+                  <label style={labelStyle}>Company</label>
+                  <input type="text" style={inputStyle}
+                    value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    placeholder="Company name" />
+                </div>
+                <div>
+                  <label style={labelStyle}>Phone</label>
+                  <input type="tel" style={inputStyle}
+                    value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="+86 xxx xxxx xxxx" />
+                </div>
               </div>
 
-              <div className="group">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Phone</label>
-                <input 
-                  type="tel" 
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-white/50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all duration-300 outline-none"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  placeholder="+1 (234) 567-890"
-                />
+              <div>
+                <label style={labelStyle}>Message *</label>
+                <textarea required rows={4} style={{ ...inputStyle, resize: 'none' }}
+                  value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Describe your PCB requirements..." />
               </div>
 
-              <div className="group">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Message *</label>
-                <textarea 
-                  required
-                  rows={4}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-white/50 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all duration-300 outline-none resize-none"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Describe your PCB requirements..."
-                ></textarea>
-              </div>
-
-              <div className="group">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Upload Files (Gerber, BOM)</label>
-                <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-blue-400 transition-colors">
-                  <input 
-                    type="file" 
-                    multiple
-                    accept=".zip,.rar,.7z,.pdf,.txt"
-                    className="hidden"
-                    id="file-upload"
-                    onChange={handleFileChange}
-                  />
-                  <label htmlFor="file-upload" className="cursor-pointer">
-                    <div className="text-4xl mb-2">📎</div>
-                    <p className="text-sm text-gray-600">Click to upload or drag files here</p>
-                    <p className="text-xs text-gray-400 mt-1">Supports: .zip, .rar, .7z, .pdf, .txt</p>
+              <div>
+                <label style={labelStyle}>Upload Files (Gerber, BOM)</label>
+                <div style={{
+                  border: '2px dashed #e5e7eb', borderRadius: '10px', padding: '24px', textAlign: 'center',
+                  transition: 'border-color 0.2s ease',
+                }}
+                >
+                  <input type="file" multiple accept=".zip,.rar,.7z,.pdf,.txt" style={{ display: 'none' }} id="file-upload" onChange={handleFileChange} />
+                  <label htmlFor="file-upload" style={{ cursor: 'pointer' }}>
+                    <div style={{ fontSize: '1.6rem', marginBottom: '6px' }}>📎</div>
+                    <p style={{ fontSize: '0.85rem', color: '#6b7280' }}>Click to upload or drag files here</p>
+                    <p style={{ fontSize: '0.72rem', color: '#9ca3af', marginTop: '4px' }}>Supports: .zip, .rar, .7z, .pdf, .txt</p>
                   </label>
                 </div>
                 {formData.files.length > 0 && (
-                  <div className="mt-3 p-3 bg-green-50 rounded-lg">
-                    <p className="text-sm text-green-700 font-medium">
+                  <div style={{ marginTop: '10px', padding: '10px 14px', background: '#dcfce7', borderRadius: '8px' }}>
+                    <p style={{ fontSize: '0.82rem', color: '#16a34a', fontWeight: 600 }}>
                       ✓ {formData.files.length} file(s) selected
                     </p>
                   </div>
                 )}
               </div>
 
-              <button 
-                type="submit"
-                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/30 flex items-center justify-center gap-2"
+              <button type="submit" style={{
+                width: '100%', background: '#ff6b00', color: 'white', fontWeight: 700, fontSize: '1rem',
+                padding: '14px 0', borderRadius: '8px', border: 'none', cursor: 'pointer',
+                transition: 'all 0.2s ease', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+              }}
               >
                 <span>Send Inquiry</span>
-                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
               </button>
             </form>
           </div>
 
-          {/* Contact Information */}
-          <div className="space-y-6">
+          {/* Contact Info Sidebar */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {/* Info Card */}
-            <div className="glass rounded-3xl p-8 shadow-xl">
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-              <div className="space-y-6">
+            <div style={{ background: '#ffffff', borderRadius: '16px', padding: '28px', border: '1px solid #e5e7eb', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#1a2332', marginBottom: '20px' }}>Contact Information</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {[
-                  { icon: '📧', title: 'Email', value: 'sales09dk@gmail.com', color: 'from-blue-400 to-cyan-400' },
-                  { icon: '📞', title: 'Phone', value: '+86-136-0961-1816', color: 'from-green-400 to-emerald-400' },
-                  { icon: '📍', title: 'Address', value: 'Dongguan, Guangdong, China', color: 'from-purple-400 to-pink-400' },
-                ].map((info, index) => (
-                  <div key={index} className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/50 transition-colors">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${info.color} flex items-center justify-center text-xl flex-shrink-0`}>
+                  { icon: '📧', title: 'Email', value: 'sales09dk@gmail.com', color: '#0066cc' },
+                  { icon: '📞', title: 'Phone', value: '+86-136-0961-1816', color: '#10b981' },
+                  { icon: '📍', title: 'Address', value: 'Dongguan, Guangdong, China', color: '#8b5cf6' },
+                ].map((info, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <div style={{
+                      width: '40px', height: '40px', borderRadius: '10px', flexShrink: 0,
+                      background: `${info.color}10`, border: `1px solid ${info.color}20`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem',
+                    }}>
                       {info.icon}
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900">{info.title}</p>
-                      <p className="text-gray-600 mt-1">{info.value}</p>
+                      <p style={{ fontWeight: 600, color: '#1a2332', fontSize: '0.85rem' }}>{info.title}</p>
+                      <p style={{ color: '#6b7280', fontSize: '0.82rem', marginTop: '2px' }}>{info.value}</p>
                     </div>
                   </div>
                 ))}
@@ -223,36 +227,29 @@ export default function Contact() {
             </div>
 
             {/* Quick Response Card */}
-            <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-blue-900 rounded-3xl p-8 text-white relative overflow-hidden">
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-                }}></div>
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold mb-4">Quick Response Guarantee</h3>
-                <ul className="space-y-3">
-                  {[
-                    'Quote within 24 hours',
-                    'DFM check included',
-                    'Technical support available',
-                    'NDA protection offered',
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-center gap-3">
-                      <span className="w-6 h-6 rounded-full bg-green-400/20 flex items-center justify-center text-green-400 text-sm">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div style={{ background: '#1a2b4a', borderRadius: '16px', padding: '28px', color: 'white', position: 'relative', overflow: 'hidden' }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '16px', position: 'relative', zIndex: 1 }}>Quick Response Guarantee</h3>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', position: 'relative', zIndex: 1 }}>
+                {[
+                  'Quote within 24 hours',
+                  'DFM check included',
+                  'Technical support available',
+                  'NDA protection offered',
+                ].map((item, i) => (
+                  <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem' }}>
+                    <span style={{ width: '18px', height: '18px', borderRadius: '50%', background: 'rgba(16,185,129,0.2)', color: '#4ade80', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.65rem', fontWeight: 700, flexShrink: 0 }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Map Placeholder */}
-            <div className="glass rounded-3xl overflow-hidden shadow-xl">
-              <div className="h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-4xl mb-2">🗺️</div>
-                  <p className="text-gray-600">Dongguan, China</p>
+            <div style={{ background: '#ffffff', borderRadius: '16px', overflow: 'hidden', border: '1px solid #e5e7eb', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}>
+              <div style={{ height: '160px', background: 'linear-gradient(135deg, #f3f4f6, #e5e7eb)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: '1.6rem', marginBottom: '4px' }}>🗺️</div>
+                  <p style={{ color: '#6b7280', fontSize: '0.85rem' }}>Dongguan, China</p>
                 </div>
               </div>
             </div>

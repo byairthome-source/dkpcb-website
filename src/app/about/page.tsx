@@ -1,95 +1,111 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import type { Metadata } from 'next'
-
-export { metadata } from './metadata'
 
 export default function About() {
   return (
-    <div className="min-h-screen">
+    <div style={{ minHeight: '100vh' }}>
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-blue-900"></div>
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1920&q=80')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}></div>
-        <div className="container mx-auto px-4 relative z-10 text-center text-white">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-slide-up">About DKPCB</h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto opacity-90 animate-slide-up stagger-2">
+      <section style={{ background: '#1a2b4a', padding: '120px 0 80px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <h1 style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', fontWeight: 800, color: '#ffffff', marginBottom: '12px', letterSpacing: '-0.01em' }}>
+            About DKPCB
+          </h1>
+          <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.65)', maxWidth: '600px', margin: '0 auto', lineHeight: 1.7 }}>
             One-Stop EMS Solution — PCB Design, Manufacturing, Assembly & Enclosures
           </p>
         </div>
       </section>
 
       {/* Company Introduction */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section style={{ background: '#ffffff', padding: '80px 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
             <div>
-              <span className="text-orange-500 font-semibold tracking-wider uppercase">About Us</span>
-              <h2 className="text-4xl font-bold mt-2 mb-6 bg-gradient-to-r from-blue-900 to-purple-700 bg-clip-text text-transparent">
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: '6px',
+                fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+                color: '#0066cc', padding: '4px 14px', background: 'rgba(0,102,204,0.08)',
+                borderRadius: '20px', marginBottom: '12px',
+              }}>
+                <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#0066cc', display: 'inline-block' }}/>
+                About Us
+              </div>
+              <h2 style={{ fontSize: '1.9rem', fontWeight: 800, color: '#1a2332', marginBottom: '16px', letterSpacing: '-0.01em' }}>
                 Your One-Stop EMS Partner
               </h2>
-              <div className="space-y-4 text-gray-600 leading-relaxed">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', color: '#6b7280', lineHeight: 1.7, fontSize: '0.92rem' }}>
                 <p>
-                  DKPCB Solutions is a professional <strong className="text-blue-900">one-stop Electronic Manufacturing Services (EMS)</strong> provider based in Dongguan, China. 
-                  We specialize in high-quality PCB prototyping, fabrication, assembly, and enclosure manufacturing — serving customers worldwide with comprehensive end-to-end solutions.
+                  DKPCB Solutions is a professional <strong style={{ color: '#1a2332' }}>one-stop Electronic Manufacturing Services (EMS)</strong> provider based in Dongguan, China.
+                  We specialize in high-quality PCB prototyping, fabrication, assembly, and enclosure manufacturing.
                 </p>
                 <p>
-                  <strong className="text-blue-900">Our Mission:</strong> Delivering innovative, reliable, and cost-effective 
+                  <strong style={{ color: '#1a2332' }}>Our Mission:</strong> Delivering innovative, reliable, and cost-effective
                   PCB solutions that empower our clients to bring their electronic products to market faster.
                 </p>
                 <p>
-                  <strong className="text-blue-900">Our Vision:</strong> To become the most trusted PCB and electronics manufacturing partner 
+                  <strong style={{ color: '#1a2332' }}>Our Vision:</strong> To become the most trusted PCB and electronics manufacturing partner
                   for companies globally, recognized for our technical excellence and customer-first approach.
                 </p>
                 <p>
-                  We offer <strong className="text-orange-500">FREE expert advice</strong> at the beginning of your design process — 
-                  to save time, workload, and costs — helping your product go from concept to production smoothly.
+                  We offer <strong style={{ color: '#ff6b00' }}>FREE expert advice</strong> at the beginning of your design process —
+                  to save time, workload, and costs.
                 </p>
               </div>
             </div>
-            <div className="relative">
-              <div className="absolute -top-4 -left-4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80" 
+            <div style={{ position: 'relative' }}>
+              <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid #e5e7eb', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
+                <img
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80"
                   alt="DKPCB Manufacturing"
-                  className="w-full h-auto"
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 glass rounded-xl p-4 shadow-xl animate-float">
-                <div className="text-3xl font-bold text-orange-500">No MOQ</div>
-                <div className="text-sm text-gray-600">Prototype to Mass Production</div>
+              <div style={{
+                position: 'absolute', bottom: '-16px', right: '-16px',
+                background: '#ffffff', borderRadius: '12px', padding: '16px 20px',
+                border: '1px solid #e5e7eb', boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+              }}>
+                <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#ff6b00' }}>No MOQ</div>
+                <div style={{ fontSize: '0.78rem', color: '#6b7280' }}>Prototype to Mass Production</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us - Business Matrix */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 via-purple-900 to-blue-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-orange-400 font-semibold tracking-wider uppercase">Why DKPCB</span>
-            <h2 className="text-4xl font-bold mt-2">Why Partner With Us</h2>
-            <p className="text-white/70 mt-2">What sets us apart from other PCB manufacturers</p>
+      {/* Why Choose Us */}
+      <section style={{ background: '#f5f7fa', padding: '80px 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: '6px',
+              fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+              color: '#ff6b00', padding: '4px 14px', background: 'rgba(255,107,0,0.08)',
+              borderRadius: '20px', marginBottom: '12px',
+            }}>
+              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#ff6b00', display: 'inline-block' }}/>
+              Why DKPCB
+            </div>
+            <h2 style={{ fontSize: '1.9rem', fontWeight: 800, color: '#1a2332' }}>Why Partner With Us</h2>
+            <p style={{ color: '#6b7280', marginTop: '8px', fontSize: '0.95rem' }}>What sets us apart from other PCB manufacturers</p>
           </div>
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
             {[
-              { icon: '💬', title: 'Unobstructed Communication', desc: 'Direct access to our engineering team' },
+              { icon: '💬', title: 'Clear Communication', desc: 'Direct access to our engineering team' },
               { icon: '🔍', title: 'Free DFM Check', desc: 'Design for Manufacturability analysis' },
               { icon: '📦', title: 'No MOQ', desc: 'Order from 1 piece to mass production' },
-              { icon: '✅', title: 'Defect & Quality Control', desc: 'Rigorous quality management at every step' },
+              { icon: '✅', title: 'Quality Control', desc: 'Rigorous quality management at every step' },
               { icon: '🚚', title: 'On-Time Delivery', desc: 'Reliable production scheduling' },
               { icon: '💰', title: 'Cost Saving', desc: 'Factory-direct pricing, transparent quotes' },
             ].map((item, i) => (
-              <div key={i} className="text-center p-4 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-white/15 transition-colors">
-                <div className="text-3xl mb-2">{item.icon}</div>
-                <h3 className="font-semibold text-sm mb-1">{item.title}</h3>
-                <p className="text-xs text-white/60">{item.desc}</p>
+              <div key={i} style={{
+                textAlign: 'center', padding: '24px', borderRadius: '12px',
+                background: '#ffffff', border: '1px solid #e5e7eb',
+                transition: 'all 0.3s ease',
+              }}>
+                <div style={{ fontSize: '1.8rem', marginBottom: '10px' }}>{item.icon}</div>
+                <h3 style={{ fontWeight: 700, fontSize: '0.9rem', color: '#1a2332', marginBottom: '4px' }}>{item.title}</h3>
+                <p style={{ fontSize: '0.78rem', color: '#9ca3af' }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -97,194 +113,69 @@ export default function About() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-orange-500 font-semibold tracking-wider uppercase">What We Offer</span>
-            <h2 className="text-4xl font-bold mt-2 bg-gradient-to-r from-blue-900 to-purple-700 bg-clip-text text-transparent">
-              Our Services
-            </h2>
-            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+      <section style={{ background: '#ffffff', padding: '80px 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: '6px',
+              fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+              color: '#0066cc', padding: '4px 14px', background: 'rgba(0,102,204,0.08)',
+              borderRadius: '20px', marginBottom: '12px',
+            }}>
+              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#0066cc', display: 'inline-block' }}/>
+              What We Offer
+            </div>
+            <h2 style={{ fontSize: '1.9rem', fontWeight: 800, color: '#1a2332' }}>Our Services</h2>
+            <p style={{ color: '#6b7280', marginTop: '8px', fontSize: '0.95rem', maxWidth: '500px', margin: '8px auto 0' }}>
               From initial design to final product — everything you need under one roof
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
             {[
-              { 
-                icon: '🎨', 
-                title: 'PCB Design', 
-                desc: 'Professional layout design, DFM analysis, schematic capture, component library management',
-                color: 'from-blue-500 to-cyan-500'
-              },
-              { 
-                icon: '🔧', 
-                title: 'PCBA Assembly', 
-                desc: 'SMT/DIP assembly, BOM procurement, functional testing (FCT), aging tests, packaging',
-                color: 'from-green-500 to-emerald-500'
-              },
-              { 
-                icon: '⚙️', 
-                title: 'Enclosures', 
-                desc: 'Injection molding, CNC machining, sheet metal, 3D printing. Materials: ABS, PC, Aluminum, Steel',
-                color: 'from-purple-500 to-pink-500'
-              },
-              { 
-                icon: '🏭', 
-                title: 'PCB Manufacturing', 
-                desc: '1-32 layers, HDI, Heavy Copper, RF/Microwave, Flexible, Rigid-Flex, Ceramic',
-                color: 'from-orange-500 to-red-500'
-              },
-            ].map((service, index) => (
-              <div key={index} className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover-lift overflow-hidden">
-                <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${service.color} text-white text-2xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
+              { icon: '🎨', title: 'PCB Design', desc: 'Professional layout design, DFM analysis, schematic capture', color: '#0066cc' },
+              { icon: '🔧', title: 'PCBA Assembly', desc: 'SMT/DIP assembly, BOM procurement, functional testing', color: '#10b981' },
+              { icon: '⚙️', title: 'Enclosures', desc: 'Injection molding, CNC machining, sheet metal, 3D printing', color: '#8b5cf6' },
+              { icon: '🏭', title: 'PCB Manufacturing', desc: '1-32 layers, HDI, Heavy Copper, RF, Flexible, Ceramic', color: '#ff6b00' },
+            ].map((service, i) => (
+              <div key={i} style={{
+                background: '#ffffff', borderRadius: '12px', padding: '24px',
+                border: '1px solid #e5e7eb', transition: 'all 0.3s ease',
+              }}>
+                <div style={{
+                  width: '48px', height: '48px', borderRadius: '10px',
+                  background: `${service.color}10`, border: `1px solid ${service.color}20`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '1.3rem', marginBottom: '14px',
+                }}>
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">{service.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{service.desc}</p>
+                <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#1a2332', marginBottom: '6px' }}>{service.title}</h3>
+                <p style={{ fontSize: '0.8rem', color: '#6b7280', lineHeight: 1.6 }}>{service.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* PCBA Detail */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="text-orange-500 font-semibold tracking-wider uppercase">PCBA Services</span>
-              <h2 className="text-4xl font-bold mt-2 mb-6 bg-gradient-to-r from-blue-900 to-purple-700 bg-clip-text text-transparent">
-                Full-Circuit Assembly
-              </h2>
-              <div className="space-y-3">
-                {[
-                  'Fully automated SMT (Surface Mount) assembly',
-                  'DIP (Dual In-line Package) insertion processing',
-                  'Component procurement & BOM optimization',
-                  'Functional Testing (FCT) and aging tests',
-                  'Conformal coating for harsh environments',
-                  'Secure packaging and logistics support',
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 text-gray-600">
-                    <span className="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-sm flex-shrink-0">✓</span>
-                    {item}
-                  </div>
-                ))}
-              </div>
+      {/* Capabilities */}
+      <section style={{ background: '#f5f7fa', padding: '80px 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: '6px',
+              fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+              color: '#0066cc', padding: '4px 14px', background: 'rgba(0,102,204,0.08)',
+              borderRadius: '20px', marginBottom: '12px',
+            }}>
+              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#0066cc', display: 'inline-block' }}/>
+              Technical
             </div>
-            <div className="relative">
-              <div className="absolute -top-4 -right-4 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=80" 
-                alt="PCBA Assembly"
-                className="rounded-2xl shadow-2xl w-full"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Enclosures Detail */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-orange-500 font-semibold tracking-wider uppercase">Enclosures & Parts</span>
-            <h2 className="text-4xl font-bold mt-2 bg-gradient-to-r from-blue-900 to-purple-700 bg-clip-text text-transparent">
-              Electronic Device Enclosures
-            </h2>
-            <p className="text-gray-600 mt-2">Complete enclosure solutions from design to mass production</p>
+            <h2 style={{ fontSize: '1.9rem', fontWeight: 800, color: '#1a2332' }}>PCB Manufacturing Capabilities</h2>
+            <p style={{ color: '#6b7280', marginTop: '8px', fontSize: '0.95rem' }}>Industry-leading specifications for the most demanding applications</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Materials */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <span className="text-2xl">🧱</span> Materials
-              </h3>
-              <div className="space-y-2">
-                {['ABS Plastic', 'PC (Polycarbonate)', 'Aluminum', 'Stainless Steel'].map((m, i) => (
-                  <div key={i} className="flex items-center gap-2 text-gray-600 text-sm">
-                    <span className="w-2 h-2 rounded-full bg-blue-500"></span> {m}
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Processes */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <span className="text-2xl">⚡</span> Manufacturing Processes
-              </h3>
-              <div className="space-y-2">
-                {['Plastic Injection Molding', 'Sheet Metal Fabrication', 'CNC Machining', '3D Printing / Rapid Prototyping', 'Die-Casting'].map((m, i) => (
-                  <div key={i} className="flex items-center gap-2 text-gray-600 text-sm">
-                    <span className="w-2 h-2 rounded-full bg-orange-500"></span> {m}
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Surface Treatment */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <span className="text-2xl">🎨</span> Surface Treatments
-              </h3>
-              <div className="space-y-2">
-                {['Sand Blasting & Anodizing', 'Powder Coating', 'Electroplating', 'Silk-Screen Printing', 'Laser Marking'].map((m, i) => (
-                  <div key={i} className="flex items-center gap-2 text-gray-600 text-sm">
-                    <span className="w-2 h-2 rounded-full bg-purple-500"></span> {m}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <p className="text-center text-gray-500 mt-6 text-sm">
-            💡 ID/MD design consultation available — we help ensure your enclosure perfectly fits the internal electronic components
-          </p>
-        </div>
-      </section>
-
-      {/* Certifications */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-orange-500 font-semibold tracking-wider uppercase">Quality</span>
-            <h2 className="text-4xl font-bold mt-2 bg-gradient-to-r from-blue-900 to-purple-700 bg-clip-text text-transparent">
-              Certifications & Standards
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
-            {[
-              { name: 'ISO 9001', desc: 'Quality Management' },
-              { name: 'ISO', desc: 'Manufacturing Standard' },
-              { name: 'UL Certified', desc: 'Safety Standard' },
-              { name: 'IPC Class 2/3', desc: 'Industry Standard' },
-              { name: 'RoHS', desc: 'Environmental' },
-              { name: 'CE', desc: 'European Compliance' },
-            ].map((cert, index) => (
-              <div key={index} className="group glass rounded-2xl p-5 text-center hover:shadow-xl transition-all duration-300 hover-lift">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 mx-auto mb-3 flex items-center justify-center text-white font-bold text-sm">
-                  {cert.name.slice(0, 2)}
-                </div>
-                <h3 className="font-bold text-sm mb-1">{cert.name}</h3>
-                <p className="text-xs text-gray-500">{cert.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Manufacturing Capabilities */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 via-purple-900 to-blue-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-orange-400 font-semibold tracking-wider uppercase">Technical</span>
-            <h2 className="text-4xl font-bold mt-2">PCB Manufacturing Capabilities</h2>
-            <p className="text-white/70 mt-2">Industry-leading specifications for the most demanding applications</p>
-          </div>
-
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div style={{ maxWidth: '900px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
             {[
               { label: 'PCB Layers', value: '1 - 32 Layers' },
               { label: 'Board Thickness', value: '0.4 - 3.2mm' },
@@ -293,73 +184,108 @@ export default function About() {
               { label: 'Blind & Buried Vias', value: 'Yes — Full Support' },
               { label: 'HDI PCB', value: 'Yes — Any Layer' },
               { label: 'Heavy Copper', value: 'Up to 6 oz' },
-              { label: 'RF / Microwave', value: 'Rogers 3010, 4350B, etc.' },
+              { label: 'RF / Microwave', value: 'Rogers 3010, 4350B' },
               { label: 'Ceramic PCB', value: 'Alumina (Al₂O₃), AlN' },
               { label: 'Flexible / Rigid-Flex', value: 'Yes — Full Support' },
               { label: 'Surface Finish', value: 'HASL, ENIG, OSP, Immersion Tin' },
               { label: 'Quality Standard', value: 'IPC Class 2 & 3' },
-            ].map((cap, index) => (
-              <div key={index} className="flex justify-between p-4 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-white/15 transition-colors">
-                <span className="font-semibold text-white/80 text-sm">{cap.label}:</span>
-                <span className="text-orange-400 font-medium text-sm">{cap.value}</span>
+            ].map((cap, i) => (
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 16px', borderRadius: '8px', background: '#ffffff', border: '1px solid #e5e7eb' }}>
+                <span style={{ fontWeight: 600, color: '#4b5563', fontSize: '0.85rem' }}>{cap.label}</span>
+                <span style={{ color: '#0066cc', fontWeight: 600, fontSize: '0.85rem' }}>{cap.value}</span>
               </div>
             ))}
           </div>
 
-          {/* Supported Materials */}
-          <div className="mt-10 max-w-5xl mx-auto">
-            <h3 className="text-xl font-bold text-center mb-4">Supported PCB Materials</h3>
-            <div className="flex flex-wrap justify-center gap-2">
-              {[
-                'FR4', 'FR4 High-TG', 'CEM-1', 'CEM-3',
-                'Aluminum Core', 'Rogers 3010', 'Rogers 4350B',
-                'Panasonic M6', 'Isola 370HR', 'Dupont AP8515',
-                'Alumina Ceramic', 'AlN Ceramic', 'Thermo-electric Separation',
-              ].map((mat, i) => (
-                <span key={i} className="px-3 py-1 rounded-full bg-white/10 text-sm text-white/80 border border-white/20">
-                  {mat}
-                </span>
-              ))}
-            </div>
-          </div>
-
           {/* Testing */}
-          <div className="mt-10 max-w-5xl mx-auto">
-            <h3 className="text-xl font-bold text-center mb-4">Testing & Quality Assurance</h3>
-            <div className="grid md:grid-cols-4 gap-3">
+          <div style={{ marginTop: '32px', textAlign: 'center' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1a2332', marginBottom: '16px' }}>Testing & Quality Assurance</h3>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px' }}>
               {[
                 '100% Electrical Test', 'AOI Inspection', 'X-ray Inspection', 'Flying Probe Test',
                 'IMS / IQC / IPC / OQC', 'Solderability Test', 'Cross-Section Analysis', 'Thermal Cycling Test',
               ].map((test, i) => (
-                <div key={i} className="text-center p-3 rounded-lg bg-white/5 text-sm">
-                  <span className="text-orange-400">✓</span> {test}
-                </div>
+                <span key={i} style={{ padding: '6px 14px', borderRadius: '6px', background: '#ffffff', border: '1px solid #e5e7eb', fontSize: '0.8rem', color: '#4b5563', fontWeight: 500 }}>
+                  <span style={{ color: '#10b981', marginRight: '4px' }}>✓</span>{test}
+                </span>
               ))}
             </div>
           </div>
         </div>
       </section>
 
+      {/* Certifications */}
+      <section style={{ background: '#ffffff', padding: '64px 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '36px' }}>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: '6px',
+              fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+              color: '#0066cc', padding: '4px 14px', background: 'rgba(0,102,204,0.08)',
+              borderRadius: '20px', marginBottom: '12px',
+            }}>
+              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#0066cc', display: 'inline-block' }}/>
+              Quality
+            </div>
+            <h2 style={{ fontSize: '1.7rem', fontWeight: 800, color: '#1a2332' }}>Certifications & Standards</h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '14px' }}>
+            {[
+              { name: 'ISO 9001', desc: 'Quality Management' },
+              { name: 'IPC Class 2', desc: 'Industry Standard' },
+              { name: 'IPC Class 3', desc: 'Industry Standard' },
+              { name: 'UL Certified', desc: 'Safety Standard' },
+              { name: 'RoHS', desc: 'Environmental' },
+              { name: 'CE', desc: 'European Compliance' },
+            ].map((cert, i) => (
+              <div key={i} style={{
+                background: '#f9fafb', border: '1px solid #f3f4f6',
+                borderRadius: '10px', padding: '22px 10px', textAlign: 'center',
+                transition: 'all 0.3s ease',
+              }}>
+                <div style={{
+                  width: '40px', height: '40px', borderRadius: '50%', margin: '0 auto 10px',
+                  background: 'rgba(0,102,204,0.08)', border: '1px solid rgba(0,102,204,0.15)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '0.6rem', fontWeight: 800, color: '#0066cc',
+                }}>
+                  {cert.name.slice(0, 2)}
+                </div>
+                <div style={{ fontWeight: 700, color: '#1a2332', fontSize: '0.82rem' }}>{cert.name}</div>
+                <div style={{ fontSize: '0.7rem', color: '#9ca3af', marginTop: '3px' }}>{cert.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Your Project?</h2>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Upload your Gerber files and BOM, or just tell us your idea — our team provides free consultation and DFM analysis.
+      <section style={{ background: '#1a2b4a', padding: '64px 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#ffffff', marginBottom: '12px' }}>
+            Ready to Start Your Project?
+          </h2>
+          <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '28px', maxWidth: '500px', margin: '0 auto 28px', fontSize: '0.95rem' }}>
+            Upload your Gerber files and BOM, or just tell us your idea — our team provides free consultation.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/products" 
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/30"
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href="/products" style={{
+              display: 'inline-flex', alignItems: 'center', gap: '8px',
+              background: '#ff6b00', color: 'white', fontWeight: 700, fontSize: '0.95rem',
+              padding: '14px 28px', borderRadius: '8px', textDecoration: 'none',
+              transition: 'all 0.2s ease',
+            }}
             >
               Get PCB Quote
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
-            <Link 
-              href="/contact" 
-              className="inline-flex items-center gap-2 border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300"
+            <Link href="/contact" style={{
+              display: 'inline-flex', alignItems: 'center', gap: '8px',
+              border: '1.5px solid rgba(255,255,255,0.4)', color: 'white',
+              fontWeight: 600, fontSize: '0.95rem',
+              padding: '14px 28px', borderRadius: '8px',
+              textDecoration: 'none', background: 'rgba(255,255,255,0.06)', transition: 'all 0.2s ease',
+            }}
             >
               Free Consultation
             </Link>
