@@ -40,8 +40,17 @@ export default function Products() {
       
       // Material multiplier
       const materialMultiplier = quote.material === 'fr4' ? 1 : 
+                                 quote.material === 'fr4-hightg' ? 1.2 : 
+                                 quote.material === 'cem1' ? 0.9 : 
+                                 quote.material === 'cem3' ? 0.9 : 
                                  quote.material === 'aluminum' ? 1.5 : 
-                                 quote.material === 'rogers' ? 2.5 : 1
+                                 quote.material === 'rogers3010' ? 2.5 : 
+                                 quote.material === 'rogers4350' ? 2.2 : 
+                                 quote.material === 'panasonic' ? 2.0 : 
+                                 quote.material === 'isola370' ? 1.8 : 
+                                 quote.material === 'dupont' ? 2.0 : 
+                                 quote.material === 'alumina' ? 4.0 : 
+                                 quote.material === 'aln' ? 5.0 : 1
       
       // Surface finish addon
       const surfaceAddon = quote.surfaceFinish === 'hasl' ? 0 :
@@ -120,10 +129,15 @@ export default function Products() {
                     value={quote.pcbType}
                     onChange={(e) => setQuote({ ...quote, pcbType: e.target.value })}
                   >
-                    <option value="standard">Standard PCB</option>
-                    <option value="flex">Flexible PCB</option>
+                    <option value="standard">Standard PCB (FR4 Single/Double)</option>
+                    <option value="multilayer">Multi-Layer PCB (4-32 Layers)</option>
+                    <option value="flex">Flexible PCB (FPC)</option>
                     <option value="rigid-flex">Rigid-Flex PCB</option>
-                    <option value="aluminum">Aluminum PCB</option>
+                    <option value="aluminum">Aluminum PCB (Metal Core)</option>
+                    <option value="rogers">Rogers RF / Microwave PCB</option>
+                    <option value="heavy-copper">Heavy Copper PCB (2-6 oz)</option>
+                    <option value="ceramic">Ceramic PCB (Alumina / AlN)</option>
+                    <option value="hdi">HDI PCB (Any Layer Interconnection)</option>
                   </select>
                 </div>
 
@@ -140,6 +154,12 @@ export default function Products() {
                     <option value={4}>4 Layers</option>
                     <option value={6}>6 Layers</option>
                     <option value={8}>8 Layers</option>
+                    <option value={10}>10 Layers</option>
+                    <option value={12}>12 Layers</option>
+                    <option value={16}>16 Layers</option>
+                    <option value={20}>20 Layers</option>
+                    <option value={24}>24 Layers</option>
+                    <option value={32}>32 Layers</option>
                   </select>
                 </div>
 
@@ -200,9 +220,18 @@ export default function Products() {
                     value={quote.material}
                     onChange={(e) => setQuote({ ...quote, material: e.target.value })}
                   >
-                    <option value="fr4">FR4</option>
-                    <option value="aluminum">Aluminum</option>
-                    <option value="rogers">Rogers</option>
+                    <option value="fr4">FR4 (Standard)</option>
+                    <option value="fr4-hightg">FR4 High-TG</option>
+                    <option value="cem1">CEM-1</option>
+                    <option value="cem3">CEM-3</option>
+                    <option value="aluminum">Aluminum Core</option>
+                    <option value="rogers3010">Rogers 3010</option>
+                    <option value="rogers4350">Rogers 4350B</option>
+                    <option value="panasonic">Panasonic M6</option>
+                    <option value="isola370">Isola 370HR</option>
+                    <option value="dupont">Dupont AP8515 (Flex)</option>
+                    <option value="alumina">Alumina Ceramic (Al₂O₃)</option>
+                    <option value="aln">Aluminum Nitride (AlN)</option>
                   </select>
                 </div>
 

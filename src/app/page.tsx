@@ -1,9 +1,94 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import Script from 'next/script'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'DKPCB - Professional PCB Manufacturing & Assembly Service',
+  description:
+    'DKPCB is a professional PCB manufacturer in China. We offer custom PCB prototyping, multilayer fabrication and assembly with fast turnaround and competitive pricing. Request a free quote today.',
+  alternates: {
+    canonical: '/',
+  },
+}
+
+// 首页 Service Schema
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'PCB Manufacturing',
+  provider: {
+    '@type': 'Organization',
+    name: 'DKPCB',
+    url: 'https://dkpcb.com',
+  },
+  description:
+    'Professional PCB prototyping, fabrication and assembly services from China. 1-32 layers, fast turnaround, low MOQ.',
+  areaServed: {
+    '@type': 'Place',
+    name: 'Worldwide',
+  },
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'USD',
+    description: 'Custom PCB fabrication starting from prototype quantities',
+  },
+}
+
+// FAQ Schema（提升搜索结果显示）
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is the minimum order quantity for PCB manufacturing?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'DKPCB accepts orders from 1 piece for prototypes. We support low MOQ for all PCB types including single layer, double layer and multilayer PCBs.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How fast is the PCB turnaround time?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Standard turnaround is 3-5 business days. We also offer 24-hour express service for urgent PCB prototypes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What PCB materials does DKPCB support?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'DKPCB supports FR4, aluminum-based, Rogers, high-frequency, and flexible PCB materials for various applications.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I get a PCB quote from DKPCB?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'You can get an instant PCB quote by visiting our Products page and submitting your requirements, or by emailing sales09dk@gmail.com with your Gerber files.',
+      },
+    },
+  ],
+}
 
 export default function Home() {
   return (
     <main>
+      {/* SEO 结构化数据 */}
+      <Script
+        id="service-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <Script
+        id="faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Hero Section with Parallax Background */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         {/* Background Image with Overlay */}
@@ -40,14 +125,14 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-20 text-center text-white">
           <div className="animate-slide-up">
             <span className="inline-block px-4 py-1 rounded-full glass text-sm mb-6 opacity-0 stagger-1 animate-slide-up">
-              🏭 Professional PCB Manufacturing Since 2020
+              🏭 One-Stop PCB Solutions — Design, Manufacturing & Quality Control
             </span>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent animate-gradient">
-              DKPCB
+              DKPCB Solutions
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90 opacity-0 stagger-2 animate-slide-up">
-              High-quality PCB prototyping and manufacturing services with fast turnaround. 
-              Get instant quotes for your PCB projects.
+              Professional PCB manufacturing from prototype to mass production. 
+              1-32 layers, FR4/Aluminum/Rogers, fast turnaround with ISO 9001 certified quality.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 stagger-3 animate-slide-up">
               <Link 
@@ -111,20 +196,38 @@ export default function Home() {
               { 
                 icon: '⚡', 
                 title: '24H Quick Turn', 
-                desc: 'Fast prototyping and production with 24-hour turnaround available',
+                desc: 'Fast prototyping with 24-hour express service available for urgent projects',
                 color: 'from-yellow-400 to-orange-500'
               },
               { 
                 icon: '✅', 
-                title: 'Quality Certified', 
-                desc: 'ISO 9001, UL, and RoHS certified manufacturing facilities',
+                title: 'ISO 9001 Certified', 
+                desc: 'Strict quality control with 100% electrical test, AOI inspection, and IPC Class 2/3 compliance',
                 color: 'from-green-400 to-emerald-500'
               },
               { 
                 icon: '🌍', 
-                title: 'Global Shipping', 
-                desc: 'Worldwide delivery with reliable logistics partners',
+                title: 'Global Delivery', 
+                desc: 'Worldwide shipping via DHL, FedEx, UPS with door-to-door logistics support',
                 color: 'from-blue-400 to-cyan-500'
+              },
+              { 
+                icon: '🎨', 
+                title: 'One-Stop EMS', 
+                desc: 'PCB Design, Manufacturing, PCBA Assembly & Enclosures — all under one roof',
+                color: 'from-purple-400 to-pink-500'
+              },
+              { 
+                icon: '💰', 
+                title: 'No MOQ / Cost Saving', 
+                desc: 'Factory-direct pricing, transparent quotes with no hidden fees. Order from 1 piece',
+                color: 'from-emerald-400 to-teal-500'
+              },
+              { 
+                icon: '🔧', 
+                title: 'Free DFM Check', 
+                desc: 'Complimentary Design for Manufacturability analysis to catch issues early and save costs',
+                color: 'from-red-400 to-rose-500'
               },
             ].map((feature, index) => (
               <div 
@@ -222,27 +325,37 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {[
               { 
                 title: 'Standard PCB', 
-                desc: 'Single & double sided PCBs with FR4 material',
+                desc: 'Single & double sided boards with FR4 material, cost-effective solution',
                 image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80'
               },
               { 
                 title: 'Multi-Layer PCB', 
-                desc: 'Up to 32 layers with high-density interconnect',
+                desc: 'Up to 32 layers with HDI, blind/buried vias for complex applications',
                 image: 'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=400&q=80'
               },
               { 
-                title: 'Flexible PCB', 
-                desc: 'Flex and rigid-flex circuits for dynamic applications',
+                title: 'RF / Microwave PCB', 
+                desc: 'Rogers, high-frequency materials for 5G, radar, and communication systems',
+                image: 'https://images.unsplash.com/photo-1615744855295-11a09e25d1b8?w=400&q=80'
+              },
+              { 
+                title: 'Heavy Copper PCB', 
+                desc: 'Up to 6 oz copper for power electronics, EV, and industrial applications',
+                image: 'https://images.unsplash.com/photo-1563770095-11a09e25d1b8?w=400&q=80'
+              },
+              { 
+                title: 'Flexible / Rigid-Flex', 
+                desc: 'FPC and rigid-flex circuits for wearable, automotive, and dynamic applications',
                 image: 'https://images.unsplash.com/photo-1615744855295-9d2e8c8c12b3?w=400&q=80'
               },
               { 
-                title: 'Aluminum PCB', 
-                desc: 'Metal core PCBs for high-power LED applications',
-                image: 'https://images.unsplash.com/photo-1563770095-11a09e25d1b8?w=400&q=80'
+                title: 'Aluminum / Ceramic PCB', 
+                desc: 'Metal core & ceramic PCBs for LED lighting, power supplies, and thermal management',
+                image: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?w=400&q=80'
               },
             ].map((pcb, index) => (
               <div 
