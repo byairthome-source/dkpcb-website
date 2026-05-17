@@ -2,32 +2,42 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white py-16 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
+    <footer className="bg-[#1a2332] text-white py-16 relative overflow-hidden">
+      {/* Subtle circuit background */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='0.5'%3E%3Cpath d='M0 30h60M30 0v60'/%3E%3Ccircle cx='30' cy='30' r='5'/%3E%3C/g%3E%3C/svg%3E")`,
       }}></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-3 mb-6">
+            <div className="flex items-center gap-3 mb-6">
               <img 
                 src="/pages/dkpcb-logo.png" 
                 alt="DKPCB Logo" 
-                className="h-8 w-auto brightness-0 invert"
+                className="h-9 w-auto brightness-0 invert"
               />
-              <span className="text-xl font-bold">DKPCB</span>
+              <div>
+                <span className="text-lg font-bold">DKPCB</span>
+                <span className="block text-[10px] text-white/40 tracking-widest uppercase -mt-0.5">Solutions</span>
+              </div>
             </div>
-            <p className="text-gray-400 mb-6">
-              Professional PCB manufacturing and assembly services with fast turnaround and quality guarantee.
+            <p className="text-white/50 text-sm leading-relaxed mb-6">
+              One-Stop EMS solutions for global clients. PCB manufacturing, assembly, and enclosures — from prototype to mass production.
             </p>
-            {/* Social Icons */}
             <div className="flex gap-3">
-              {['📘', '📛', '📔'].map((icon, index) => (
-                <div key={index} className="w-10 h-10 rounded-lg bg-white/10 hover:bg-orange-500/20 flex items-center justify-center cursor-pointer transition-colors">
-                  {icon}
+              {[
+                { label: 'LinkedIn', icon: 'in' },
+                { label: 'Twitter', icon: 'X' },
+                { label: 'YouTube', icon: '▶' },
+              ].map((s) => (
+                <div 
+                  key={s.label}
+                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#0066cc]/30 border border-white/10 hover:border-[#0066cc]/30 flex items-center justify-center text-xs font-bold text-white/60 hover:text-white transition-all duration-200 cursor-pointer"
+                  title={s.label}
+                >
+                  {s.icon}
                 </div>
               ))}
             </div>
@@ -35,20 +45,21 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
+            <h4 className="text-sm font-semibold text-white/80 uppercase tracking-wider mb-6">Navigation</h4>
             <ul className="space-y-3">
               {[
                 { label: 'Home', href: '/' },
-                { label: 'Products', href: '/products' },
+                { label: 'Products & Quote', href: '/products' },
                 { label: 'About Us', href: '/about' },
                 { label: 'Contact', href: '/contact' },
+                { label: 'Admin Portal', href: '/login' },
               ].map((link) => (
                 <li key={link.href}>
                   <Link 
                     href={link.href} 
-                    className="text-gray-400 hover:text-orange-400 transition-colors inline-flex items-center gap-2 group"
+                    className="text-white/40 hover:text-white text-sm transition-colors duration-200 inline-flex items-center gap-2 group"
                   >
-                    <span className="w-0 group-hover:w-4 transition-all duration-300 overflow-hidden">→</span>
+                    <span className="w-0 group-hover:w-4 transition-all duration-300 overflow-hidden text-[#c49a2b]">→</span>
                     {link.label}
                   </Link>
                 </li>
@@ -56,52 +67,62 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* PCB Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Services</h4>
-            <ul className="space-y-3 text-gray-400">
+            <h4 className="text-sm font-semibold text-white/80 uppercase tracking-wider mb-6">PCB Services</h4>
+            <ul className="space-y-3 text-white/40 text-sm">
               {[
-                'Standard PCB',
-                'Multi-Layer PCB',
-                'Flexible PCB',
-                'PCB Assembly',
-              ].map((service, index) => (
-                <li key={index} className="hover:text-orange-400 transition-colors cursor-pointer">
+                'Multi-Layer PCB (1-32 Layers)',
+                'HDI PCB & Any Layer',
+                'RF / Microwave PCB',
+                'Heavy Copper PCB',
+                'Flexible / Rigid-Flex PCB',
+                'Ceramic PCB (Alumina / AlN)',
+                'PCB Assembly (PCBA)',
+                'Enclosures & CNC Parts',
+              ].map((service, i) => (
+                <li key={i} className="hover:text-white/70 transition-colors cursor-default">
                   {service}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
-            <ul className="space-y-4 text-gray-400">
+            <h4 className="text-sm font-semibold text-white/80 uppercase tracking-wider mb-6">Contact Us</h4>
+            <ul className="space-y-4 text-white/50 text-sm">
               {[
                 { icon: '📧', text: 'sales09dk@gmail.com' },
                 { icon: '📞', text: '+86-136-0961-1816' },
-                { icon: '📍', text: 'Dongguan, China' },
-              ].map((contact, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="flex-shrink-0">{contact.icon}</span>
-                  <span>{contact.text}</span>
+                { icon: '🏭', text: 'Dongguan, Guangdong, China' },
+                { icon: '🕐', text: 'Response: within 2 hours' },
+              ].map((c, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="flex-shrink-0 mt-0.5">{c.icon}</span>
+                  <span>{c.text}</span>
                 </li>
               ))}
             </ul>
+            <div className="mt-6 p-4 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+              <div className="text-xs text-white/30 uppercase tracking-wider mb-2">Business Hours</div>
+              <div className="text-sm text-white/50">Mon – Fri: 9:00 – 18:00 (CST)</div>
+              <div className="text-sm text-white/50">Sat – Sun: Closed</div>
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-gray-500">
-            © 2026 DKPCB. All rights reserved.
+          <p className="text-sm text-white/30">
+            © 2026 DKPCB Solutions. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((link, index) => (
-              <a key={index} href="#" className="text-sm text-gray-500 hover:text-orange-400 transition-colors">
-                {link}
-              </a>
-            ))}
+          <div className="flex items-center gap-6">
+            <span className="text-xs text-white/20">ISO 9001 Certified</span>
+            <span className="text-xs text-white/20">|</span>
+            <span className="text-xs text-white/20">IPC Class 2 & 3</span>
+            <span className="text-xs text-white/20">|</span>
+            <span className="text-xs text-white/20">RoHS Compliant</span>
           </div>
         </div>
       </div>

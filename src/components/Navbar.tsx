@@ -1,24 +1,38 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <nav className="glass-nav sticky top-0 z-50 transition-all duration-300">
-      <div className="container mx-auto px-4">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled ? 'glass-nav scrolled' : 'bg-white/80'
+    }`}>
+      <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
             <img 
               src="/pages/dkpcb-logo.png" 
-              alt="DKPCB Logo" 
-              className="h-10 w-auto transition-transform duration-300 group-hover:scale-110"
+              alt="DKPCB" 
+              className="h-9 w-auto transition-transform duration-300 group-hover:scale-105"
             />
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-900 to-purple-700 bg-clip-text text-transparent">
-              DKPCB
-            </span>
+            <div className="flex flex-col leading-tight">
+              <span className="text-lg font-bold text-[#1a2332] tracking-tight">DKPCB</span>
+              <span className="text-[10px] text-[#8896a6] tracking-widest uppercase -mt-0.5">Solutions</span>
+            </div>
           </Link>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center gap-1">
             {[
               { href: '/', label: 'Home' },
               { href: '/products', label: 'Products' },
@@ -28,27 +42,29 @@ export default function Navbar() {
               <Link 
                 key={item.href}
                 href={item.href} 
-                className="relative text-gray-700 hover:text-blue-900 transition-colors font-medium py-2 group"
+                className="relative px-4 py-2 text-sm font-medium text-[#5a6678] hover:text-[#0066cc] transition-colors duration-200 rounded-lg hover:bg-[#0066cc]/5"
               >
                 {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-900 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="flex items-center space-x-4">
+          {/* Right Actions */}
+          <div className="flex items-center gap-3">
             <Link 
               href="/login" 
-              className="text-gray-700 hover:text-blue-900 transition-colors font-medium hidden sm:block"
+              className="text-sm font-medium text-[#5a6678] hover:text-[#0066cc] transition-colors duration-200 hidden sm:block"
             >
               Login
             </Link>
             <Link
               href="/products"
-              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-5 py-2 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/30 animate-pulse-glow"
+              className="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full flex items-center gap-2"
             >
               Get Quote
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </Link>
           </div>
         </div>
