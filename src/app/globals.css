@@ -1,378 +1,69 @@
 @import "tailwindcss";
 
 :root {
-  --blue-tech: #0066cc;
-  --green-pcb: #2e7d32;
+  --blue: #0066cc;
+  --green: #2e7d32;
   --copper: #c49a2b;
-  --copper-light: #e8d5a0;
   --bg-white: #ffffff;
   --bg-silver: #f5f7fa;
-  --bg-light-gray: #eef1f5;
   --text-dark: #1a2332;
   --text-gray: #5a6678;
   --text-light: #8896a6;
-  --border-light: #e2e8f0;
+  --border: #e2e8f0;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
+html { scroll-behavior: smooth; }
 
 body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: #ffffff;
   color: var(--text-dark);
-  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ========================
-   BRAND COLORS
-   ======================== */
-.blue-tech { color: var(--blue-tech); }
-.green-pcb { color: var(--green-pcb); }
-.copper { color: var(--copper); }
-.copper-light { color: var(--copper-light); }
-.bg-blue-tech { background-color: var(--blue-tech); }
-.bg-green-pcb { background-color: var(--green-pcb); }
-.bg-copper { background-color: var(--copper); }
-.bg-bg-silver { background-color: var(--bg-silver); }
-.bg-bg-light { background-color: var(--bg-light-gray); }
-
-/* ========================
-   GLASS MORPHISM — BRIGHT
-   ======================== */
+/* Glass */
 .glass-card {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255,255,255,0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 0.5px solid var(--border-light);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.glass-card:hover {
-  border-color: var(--blue-tech);
-  box-shadow: 0 8px 32px rgba(0, 102, 204, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-  transform: translateY(-4px);
+  border: 0.5px solid var(--border);
 }
 
 .glass-nav {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255,255,255,0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-light);
-  transition: box-shadow 0.3s ease, background 0.3s ease;
+  border-bottom: 1px solid var(--border);
 }
-
 .glass-nav.scrolled {
-  box-shadow: 0 1px 0 rgba(0, 102, 204, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 0 rgba(0,102,204,0.06), 0 4px 16px rgba(0,0,0,0.04);
 }
 
-/* ========================
-   ANIMATIONS
-   ======================== */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-}
-
-@keyframes slide-up {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scale-in {
-  from { opacity: 0; transform: scale(0.92); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Circuit trace pulse */
-@keyframes trace-pulse {
-  0%, 100% { opacity: 0.08; }
-  50% { opacity: 0.15; }
-}
-
-/* Data flow line */
-@keyframes data-flow {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-/* Copper pad glow */
-@keyframes copper-pulse {
-  0%, 100% { box-shadow: 0 0 4px rgba(196, 154, 43, 0.3); }
-  50% { box-shadow: 0 0 12px rgba(196, 154, 43, 0.6); }
-}
-
-/* Rotate 3D */
-@keyframes rotate3d {
-  0% { transform: rotateX(10deg) rotateY(0deg); }
-  100% { transform: rotateX(10deg) rotateY(360deg); }
-}
-
-@keyframes rotate3d-slow {
-  0% { transform: rotateX(15deg) rotateY(0deg); }
-  100% { transform: rotateX(15deg) rotateY(-360deg); }
-}
-
-/* Counter scroll */
-@keyframes count-up {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Hero title line */
-@keyframes line-expand {
-  from { width: 0; }
-  to { width: 80px; }
-}
-
-@keyframes dot-flow {
-  0% { transform: translateX(-100%); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateX(400px); opacity: 0; }
-}
-
-.animate-float { animation: float 5s ease-in-out infinite; }
-.animate-slide-up { animation: slide-up 0.7s ease-out forwards; opacity: 0; }
-.animate-fade-in { animation: fade-in 0.6s ease-out forwards; }
-.animate-scale-in { animation: scale-in 0.5s ease-out forwards; }
-.animate-gradient { background-size: 200% 200%; animation: gradient-shift 8s ease infinite; }
-.animate-trace-pulse { animation: trace-pulse 4s ease-in-out infinite; }
-.animate-copper-pulse { animation: copper-pulse 2.5s ease-in-out infinite; }
-.animate-rotate3d { animation: rotate3d 20s linear infinite; transform-style: preserve-3d; }
-.animate-rotate3d-slow { animation: rotate3d-slow 30s linear infinite; transform-style: preserve-3d; }
-
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
-.stagger-5 { animation-delay: 0.5s; }
-.stagger-6 { animation-delay: 0.6s; }
-.stagger-7 { animation-delay: 0.7s; }
-.stagger-8 { animation-delay: 0.8s; }
-
-/* ========================
-   SCROLL ANIMATIONS
-   ======================== */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ========================
-   HOVER EFFECTS
-   ======================== */
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.hover-lift:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-}
-
-.hover-scale {
-  transition: transform 0.3s ease;
-}
-.hover-scale:hover {
-  transform: scale(1.04);
-}
-
-.hover-border-blue {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.hover-border-blue:hover {
-  border-color: var(--blue-tech) !important;
-  box-shadow: 0 4px 20px rgba(0, 102, 204, 0.12);
-}
-
-/* ========================
-   BUTTON STYLES
-   ======================== */
+/* Buttons */
 .btn-primary {
-  background: linear-gradient(135deg, var(--copper) 0%, var(--blue-tech) 100%);
+  background: linear-gradient(135deg, var(--copper) 0%, var(--blue) 100%);
   color: white;
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
 }
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-  transition: left 0.5s ease;
-}
-
-.btn-primary:hover::before {
-  left: 100%;
-}
-
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.25);
+  box-shadow: 0 8px 24px rgba(0,102,204,0.25);
 }
 
 .btn-outline {
-  border: 1.5px solid var(--blue-tech);
-  color: var(--blue-tech);
+  border: 1.5px solid var(--blue);
+  color: var(--blue);
   transition: all 0.3s ease;
 }
-
 .btn-outline:hover {
-  background: var(--blue-tech);
+  background: var(--blue);
   color: white;
 }
 
-/* ========================
-   DATA FLOW LINE
-   ======================== */
-.data-flow-line {
-  height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    var(--copper-light) 20%,
-    var(--copper) 50%,
-    var(--copper-light) 80%,
-    transparent 100%);
-  background-size: 200% 100%;
-  animation: data-flow 3s linear infinite;
-  position: relative;
-  overflow: hidden;
-}
-
-.data-flow-line::after {
-  content: '';
-  position: absolute;
-  top: -1px;
-  width: 6px;
-  height: 3px;
-  background: var(--copper);
-  border-radius: 2px;
-  animation: dot-flow 2s linear infinite;
-  box-shadow: 0 0 6px var(--copper);
-}
-
-/* ========================
-   CIRCUIT BACKGROUND
-   ======================== */
-.circuit-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.12;
-}
-
-/* ========================
-   CURSOR GLOW
-   ======================== */
-.cursor-glow {
-  position: fixed;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 102, 204, 0.06) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  transition: left 0.15s ease, top 0.15s ease;
-}
-
-/* ========================
-   PCB 3D MODEL
-   ======================== */
-.pcb-3d-wrapper {
-  perspective: 1000px;
-  perspective-origin: center center;
-}
-
-.pcb-3d {
-  transform-style: preserve-3d;
-  animation: rotate3d 25s linear infinite;
-}
-
-/* ========================
-   NUMBER COUNTER
-   ======================== */
-.stat-number {
-  font-variant-numeric: tabular-nums;
-}
-
-/* ========================
-   SCROLLBAR
-   ======================== */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-silver);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border-light);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--blue-tech);
-}
-
-/* ========================
-   GLOBAL SECTION STYLES
-   ======================== */
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--blue-tech);
-  padding: 4px 12px;
-  background: rgba(0, 102, 204, 0.06);
-  border-radius: 20px;
-  border: 1px solid rgba(0, 102, 204, 0.12);
-}
-
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--text-dark);
-  letter-spacing: -0.02em;
-}
-
-.section-desc {
-  color: var(--text-gray);
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-silver); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue); }

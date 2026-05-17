@@ -7,64 +7,69 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'glass-nav scrolled' : 'bg-white/80'
-    }`}>
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+      transition: 'all 0.3s ease',
+      ...(scrolled
+        ? { background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(20px)', borderBottom: '1px solid #e2e8f0', boxShadow: '0 1px 0 rgba(0,102,204,0.06), 0 4px 16px rgba(0,0,0,0.04)' }
+        : { background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', borderBottom: '1px solid #e2e8f0' }
+      )
+    }}>
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '68px' }}>
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
-            <img 
-              src="/pages/dkpcb-logo.png" 
-              alt="DKPCB" 
-              className="h-9 w-auto transition-transform duration-300 group-hover:scale-105"
-            />
-            <div className="flex flex-col leading-tight">
-              <span className="text-lg font-bold text-[#1a2332] tracking-tight">DKPCB</span>
-              <span className="text-[10px] text-[#8896a6] tracking-widest uppercase -mt-0.5">Solutions</span>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+            <img src="/pages/dkpcb-logo.png" alt="DKPCB" style={{ height: '36px', width: 'auto' }} />
+            <div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1a2332', lineHeight: 1 }}>DKPCB</div>
+              <div style={{ fontSize: '0.6rem', color: '#8896a6', letterSpacing: '0.15em', textTransform: 'uppercase', marginTop: '1px' }}>Solutions</div>
             </div>
           </Link>
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Nav Links */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             {[
               { href: '/', label: 'Home' },
               { href: '/products', label: 'Products' },
               { href: '/about', label: 'About Us' },
               { href: '/contact', label: 'Contact' },
-            ].map((item) => (
-              <Link 
-                key={item.href}
-                href={item.href} 
-                className="relative px-4 py-2 text-sm font-medium text-[#5a6678] hover:text-[#0066cc] transition-colors duration-200 rounded-lg hover:bg-[#0066cc]/5"
-              >
+            ].map(item => (
+              <Link key={item.href} href={item.href} style={{
+                padding: '8px 16px', borderRadius: '8px', fontSize: '0.88rem', fontWeight: 500,
+                color: '#5a6678', textDecoration: 'none', transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLAnchorElement).style.color = '#0066cc'
+                ;(e.currentTarget as HTMLAnchorElement).style.background = 'rgba(0,102,204,0.06)'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLAnchorElement).style.color = '#5a6678'
+                ;(e.currentTarget as HTMLAnchorElement).style.background = 'transparent'
+              }}>
                 {item.label}
               </Link>
             ))}
           </div>
 
-          {/* Right Actions */}
-          <div className="flex items-center gap-3">
-            <Link 
-              href="/login" 
-              className="text-sm font-medium text-[#5a6678] hover:text-[#0066cc] transition-colors duration-200 hidden sm:block"
-            >
+          {/* Right */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Link href="/login" style={{ fontSize: '0.85rem', fontWeight: 500, color: '#5a6678', textDecoration: 'none' }}>
               Login
             </Link>
-            <Link
-              href="/products"
-              className="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full flex items-center gap-2"
-            >
+            <Link href="/products" style={{
+              display: 'inline-flex', alignItems: 'center', gap: '6px',
+              background: 'linear-gradient(135deg, #c49a2b 0%, #0066cc 100%)',
+              color: 'white', fontWeight: 600, fontSize: '0.88rem',
+              padding: '9px 20px', borderRadius: '50px',
+              textDecoration: 'none', boxShadow: '0 2px 8px rgba(0,102,204,0.2)',
+            }}>
               Get Quote
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
             </Link>
           </div>
         </div>
