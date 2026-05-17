@@ -11,31 +11,47 @@ export default function Login() {
     confirmPassword: '',
     company: '',
   })
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would normally send the data to your backend
-    console.log('Form submitted:', formData)
-    alert(isLogin ? 'Login successful! (Demo)' : 'Registration successful! (Demo)')
+    setLoading(true)
+    setTimeout(() => {
+      alert(isLogin ? 'Login successful! (Demo)' : 'Registration successful! (Demo)')
+      setLoading(false)
+    }, 800)
+  }
+
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    border: '1px solid #e5e7eb',
+    borderRadius: '8px',
+    padding: '10px 14px',
+    fontSize: '0.88rem',
+    color: '#374151',
+    outline: 'none',
+    background: '#f9fafb',
+    transition: 'border-color 0.2s, box-shadow 0.2s',
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12">
-      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">DKPCB</h1>
-          <p className="text-gray-600">
-            {isLogin ? 'Login to Your Account' : 'Create New Account'}
+    <div style={{ minHeight: '100vh', background: '#f5f7fa', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '48px 16px' }}>
+      <div style={{ background: '#fff', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05)', padding: '40px', width: '100%', maxWidth: '420px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 900, color: '#0066cc', marginBottom: '4px', letterSpacing: '-0.02em' }}>DKPCB</h1>
+          <p style={{ color: '#6b7280', fontSize: '0.9rem' }}>
+            {isLogin ? 'Sign in to your account' : 'Create your account'}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div>
-            <label className="block text-sm font-semibold mb-2">Email</label>
-            <input 
-              type="email" 
+            <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#374151', marginBottom: '6px' }}>Email Address</label>
+            <input
+              type="email"
               required
-              className="w-full border rounded-lg px-4 py-2"
+              style={inputStyle}
+              placeholder="your@email.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
@@ -43,10 +59,11 @@ export default function Login() {
 
           {!isLogin && (
             <div>
-              <label className="block text-sm font-semibold mb-2">Company Name</label>
-              <input 
-                type="text" 
-                className="w-full border rounded-lg px-4 py-2"
+              <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#374151', marginBottom: '6px' }}>Company Name</label>
+              <input
+                type="text"
+                style={inputStyle}
+                placeholder="Your company name"
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
               />
@@ -54,11 +71,12 @@ export default function Login() {
           )}
 
           <div>
-            <label className="block text-sm font-semibold mb-2">Password</label>
-            <input 
-              type="password" 
+            <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#374151', marginBottom: '6px' }}>Password</label>
+            <input
+              type="password"
               required
-              className="w-full border rounded-lg px-4 py-2"
+              style={inputStyle}
+              placeholder="••••••••"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
@@ -66,36 +84,50 @@ export default function Login() {
 
           {!isLogin && (
             <div>
-              <label className="block text-sm font-semibold mb-2">Confirm Password</label>
-              <input 
-                type="password" 
+              <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#374151', marginBottom: '6px' }}>Confirm Password</label>
+              <input
+                type="password"
                 required
-                className="w-full border rounded-lg px-4 py-2"
+                style={inputStyle}
+                placeholder="••••••••"
                 value={formData.confirmPassword}
                 onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
               />
             </div>
           )}
 
-          <button 
+          <button
             type="submit"
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-colors"
+            disabled={loading}
+            style={{
+              width: '100%',
+              background: loading ? '#f97316' : '#ff6b00',
+              color: '#fff',
+              padding: '12px',
+              borderRadius: '8px',
+              fontWeight: 700,
+              fontSize: '0.95rem',
+              border: 'none',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              marginTop: '8px',
+              transition: 'background 0.2s',
+            }}
           >
-            {isLogin ? 'Login' : 'Register'}
+            {loading ? 'Signing in...' : (isLogin ? 'Sign In' : 'Create Account')}
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <button 
+        <div style={{ marginTop: '24px', textAlign: 'center' }}>
+          <button
             onClick={() => setIsLogin(!isLogin)}
-            className="text-blue-900 hover:underline"
+            style={{ background: 'none', border: 'none', color: '#0066cc', fontSize: '0.88rem', cursor: 'pointer', fontWeight: 500 }}
           >
-            {isLogin ? "Don't have an account? Register" : 'Already have an account? Login'}
+            {isLogin ? "Don't have an account? Register now" : 'Already have an account? Sign in'}
           </button>
         </div>
 
-        <div className="mt-4 text-center">
-          <Link href="/" className="text-sm text-gray-600 hover:text-blue-900">
+        <div style={{ marginTop: '16px', textAlign: 'center' }}>
+          <Link href="/" style={{ fontSize: '0.82rem', color: '#6b7280', textDecoration: 'none' }}>
             ← Back to Home
           </Link>
         </div>
