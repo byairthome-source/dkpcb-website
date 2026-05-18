@@ -115,6 +115,20 @@ export function QuickQuote() {
 // ============ HERO BANNER ============
 const banners = [
   {
+    video: '/images/banner-video.webm',
+    tag: 'Manufacturing',
+    tagBg: '#0066cc',
+    title: 'Advanced PCB Manufacturing Process',
+    bullets: [
+      'State-of-the-art production facilities',
+      'Quality control at every step',
+    ],
+    cta: 'Learn More',
+    ctaLink: '/about',
+    overlayOpacity: 0.5,
+    textColor: '#ffffff',
+  },
+  {
     img: '/images/hero-1.webp',
     tag: 'Save $30',
     tagBg: '#dc2626',
@@ -125,7 +139,7 @@ const banners = [
     ],
     cta: 'Get Coupon Now',
     ctaLink: '/products',
-    overlayOpacity: 0.5,  // 遮罩透明度
+    overlayOpacity: 0.5,
     textColor: '#ffffff',
   },
   {
@@ -206,21 +220,48 @@ export function HeroBanner() {
       overflow: 'hidden',
       flexShrink: 0,
     }}>
-      {/* Full-screen background image */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundImage: `url(${b.img})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          transition: 'background-image 1s ease-in-out',
-          zIndex: 0,
-        }}
-      />
+      {/* Full-screen background (image or video) */}
+      {b.video ? (
+        <video
+          key={active}
+          src={b.video}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+            opacity: loaded.includes(active) ? 1 : 0,
+            transition: 'opacity 0.8s ease',
+          }}
+          onLoadedData={() => {
+            if (!loaded.includes(active)) {
+              setLoaded(s => [...s, active])
+            }
+          }}
+        />
+      ) : (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundImage: `url(${b.img})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            transition: 'background-image 1s ease-in-out',
+            zIndex: 0,
+          }}
+        />
+      )}
       
       {/* Dark overlay */}
       <div
