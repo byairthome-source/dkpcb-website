@@ -1,424 +1,7 @@
-'use client'
-
-import { useState, useEffect } from 'react'
 import Link from 'next/link'
-
-// ============ HERO BANNER (4 slides, exact JLCPCB style) ============
-function HeroBanner() {
-  const banners = [
-    {
-      img: '/images/hero-1.webp',
-      tag: 'Save $30',
-      tagBg: '#dc2626',
-      title: 'On Our Premium, 6-Layer PCBs',
-      bullets: [
-        'FREE Via-in-Pad (Save Space & Cost)',
-        'Reliable ±10% Impedance Control',
-      ],
-      cta: 'Get Coupon Now',
-      ctaLink: '/products',
-    },
-    {
-      img: '/images/hero-2.webp',
-      tag: 'New Product',
-      tagBg: '#0066cc',
-      title: 'Flexible Heaters Starting at $1',
-      bullets: [
-        'Free Engineering Support & Circuit Design',
-        'Custom Shapes, Sizes, and Power Ratings',
-      ],
-      cta: 'Learn More',
-      ctaLink: '/products',
-    },
-    {
-      img: '/images/hero-3.webp',
-      tag: 'Upgrade Service',
-      tagBg: '#7c3aed',
-      title: 'Accelerate PCB Layout Process from $9.9',
-      bullets: [
-        '200-Pin PCB boards start from only $9.9',
-        'Solve component matching for just $10',
-      ],
-      cta: 'Order Now',
-      ctaLink: '/products',
-    },
-    {
-      img: '/images/hero-4.webp',
-      tag: 'Free Coupon',
-      tagBg: '#ff6b00',
-      title: 'Upgrade to Nano-coated Stencil Free with Coupon',
-      bullets: [
-        'Faster release, uniform deposits, clean less',
-        'SMT stencil from $3, Nano-Coating free with coupon',
-      ],
-      cta: 'Get Coupon Now',
-      ctaLink: '/products',
-    },
-  ]
-
-  const [active, setActive] = useState(0)
-  const [loaded, setLoaded] = useState<Set<number>>(new Set([0]))
-
-  useEffect(() => {
-    const t = setInterval(() => setActive(a => (a + 1) % banners.length), 5000)
-    return () => clearInterval(t)
-  }, [banners.length])
-
-  useEffect(() => { setLoaded(s => new Set([...s, active])) }, [active])
-
-  const goPrev = () => setActive(a => (a - 1 + banners.length) % banners.length)
-  const goNext = () => setActive(a => (a + 1) % banners.length)
-
-  const b = banners[active]
-
-  return (
-    <div style={{ position: 'relative', background: '#eef2f7', overflow: 'hidden' }}>
-      {/* Main content */}
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '50px 24px 130px', display: 'flex', alignItems: 'center', gap: '40px' }}>
-        {/* Left text */}
-        <div style={{ flex: '0 0 42%', zIndex: 2 }}>
-          <span style={{
-            display: 'inline-block', background: b.tagBg, color: '#fff',
-            fontSize: '0.78rem', fontWeight: 700, padding: '5px 14px',
-            borderRadius: '3px', marginBottom: '18px', letterSpacing: '0.02em',
-          }}>
-            {b.tag}
-          </span>
-          <h1 style={{
-            fontSize: '2.2rem', fontWeight: 800, color: '#111827',
-            lineHeight: 1.15, marginBottom: '22px',
-          }}>
-            {b.title}
-          </h1>
-          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 30px' }}>
-            {b.bullets.map((bullet, i) => (
-              <li key={i} style={{
-                display: 'flex', alignItems: 'center', gap: '10px',
-                color: '#4b5563', fontSize: '0.92rem', marginBottom: '10px',
-              }}>
-                <span style={{
-                  width: '5px', height: '5px', borderRadius: '50%',
-                  background: '#6b7280', flexShrink: 0,
-                }} />
-                {bullet}
-              </li>
-            ))}
-          </ul>
-          <Link href={b.ctaLink} style={{
-            display: 'inline-block',
-            background: '#0066cc', color: '#fff', fontWeight: 600,
-            padding: '12px 28px', borderRadius: '24px', textDecoration: 'none',
-            fontSize: '0.9rem', transition: 'all 0.2s',
-          }}>
-            {b.cta}
-          </Link>
-        </div>
-
-        {/* Right image */}
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', minHeight: '300px', zIndex: 2 }}>
-          <img
-            key={active}
-            src={b.img}
-            alt={b.title}
-            width="520"
-            height="auto"
-            loading={active === 0 ? 'eager' : 'lazy'}
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-              objectFit: 'contain',
-              opacity: loaded.has(active) ? 1 : 0,
-              transition: 'opacity 0.4s ease',
-            }}
-            onLoad={() => setLoaded(s => new Set([...s, active]))}
-          />
-        </div>
-      </div>
-
-      {/* Left arrow */}
-      <button onClick={goPrev} style={{
-        position: 'absolute', left: '24px', top: '42%',
-        width: '44px', height: '44px', borderRadius: '50%',
-        background: '#fff', border: '1px solid #e5e7eb',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        cursor: 'pointer', boxShadow: '0 2px 10px rgba(0,0,0,0.08)', zIndex: 10,
-      }}>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-
-      {/* Right arrow */}
-      <button onClick={goNext} style={{
-        position: 'absolute', right: '24px', top: '42%',
-        width: '44px', height: '44px', borderRadius: '50%',
-        background: '#fff', border: '1px solid #e5e7eb',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        cursor: 'pointer', boxShadow: '0 2px 10px rgba(0,0,0,0.08)', zIndex: 10,
-      }}>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-
-      {/* Dot indicators */}
-      <div style={{
-        position: 'absolute', bottom: '88px', left: '50%',
-        transform: 'translateX(-50%)', display: 'flex', gap: '8px', zIndex: 10,
-      }}>
-        {banners.map((_, i) => (
-          <button key={i} onClick={() => setActive(i)} style={{
-            width: i === active ? '24px' : '8px', height: '8px',
-            borderRadius: '4px', border: 'none', cursor: 'pointer',
-            background: i === active ? '#0066cc' : '#cbd5e1',
-            transition: 'all 0.3s',
-          }} />
-        ))}
-      </div>
-
-      {/* Quick Quote Bar - overlaps bottom of hero, JLCPCB style */}
-      <div style={{
-        position: 'absolute', bottom: '-32px', left: '50%',
-        transform: 'translateX(-50%)', width: '100%', maxWidth: '1000px',
-        padding: '0 24px', zIndex: 20,
-      }}>
-        <QuickQuote />
-      </div>
-    </div>
-  )
-}
-
-// ============ QUICK QUOTE BAR (JLCPCB exact style) ============
-function QuickQuote() {
-  const [layers, setLayers] = useState('2')
-  const [qty, setQty] = useState('5')
-
-  return (
-    <div style={{
-      background: '#fff', borderRadius: '10px',
-      boxShadow: '0 8px 30px rgba(0,0,0,0.1)',
-      border: '1px solid #e5e7eb',
-      padding: '18px 28px',
-      display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap',
-    }}>
-      {/* Layers selector */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-        <label style={{ fontSize: '0.72rem', color: '#6b7280', fontWeight: 600 }}>Layers</label>
-        <select
-          value={layers}
-          onChange={(e) => setLayers(e.target.value)}
-          style={{
-            border: '1px solid #e5e7eb', borderRadius: '6px',
-            padding: '8px 12px', fontSize: '0.88rem', fontWeight: 600,
-            color: '#1a2b4a', background: '#f9fafb', outline: 'none',
-            cursor: 'pointer', minWidth: '90px',
-          }}
-        >
-          {['1','2','4','6','8','10','12','14','16','18','20','22','24','26','28','30','32'].map(o => (
-            <option key={o} value={o}>{o} Layer{o !== '1' ? 's' : ''}</option>
-          ))}
-        </select>
-      </div>
-
-      {/* Unit display */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-        <label style={{ fontSize: '0.72rem', color: '#6b7280', fontWeight: 600 }}>Unit</label>
-        <div style={{
-          border: '1px solid #e5e7eb', borderRadius: '6px',
-          padding: '8px 12px', fontSize: '0.88rem', fontWeight: 600,
-          color: '#1a2b4a', background: '#f9fafb', minWidth: '70px', textAlign: 'center',
-        }}>mm</div>
-      </div>
-
-      {/* Quantity selector */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-        <label style={{ fontSize: '0.72rem', color: '#6b7280', fontWeight: 600 }}>Quantity</label>
-        <select value={qty} onChange={(e) => setQty(e.target.value)} style={{
-          border: '1px solid #e5e7eb', borderRadius: '6px',
-          padding: '8px 12px', fontSize: '0.88rem', fontWeight: 600,
-          color: '#1a2b4a', background: '#f9fafb', outline: 'none',
-          cursor: 'pointer', minWidth: '90px',
-        }}>
-          {['5','10','15','20','25','30','50','75','100','500','1000','2000'].map(o => (
-            <option key={o} value={o}>{o} pcs</option>
-          ))}
-        </select>
-      </div>
-
-      {/* CTA */}
-      <Link href="/products" style={{
-        display: 'inline-flex', alignItems: 'center', gap: '8px',
-        background: '#0066cc', color: '#fff', fontWeight: 700,
-        fontSize: '0.9rem', padding: '10px 28px', borderRadius: '6px',
-        textDecoration: 'none', marginLeft: 'auto', whiteSpace: 'nowrap',
-      }}>
-        Get Instant Quote
-      </Link>
-    </div>
-  )
-}
-
-// ============ CORE VALUES (JLCPCB: Rapid Fab & Assembly etc.) ============
-function CoreValues() {
-  const items = [
-    {
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0066cc" strokeWidth="2">
-          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-        </svg>
-      ),
-      title: 'Rapid Fab & Assembly',
-      sub: 'As fast as 24 hours',
-      color: '#0066cc',
-      bg: '#eff6ff',
-    },
-    {
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5">
-          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-          <polyline points="22 4 12 14.01 9 11.01"/>
-        </svg>
-      ),
-      title: 'Guaranteed Quality',
-      sub: '99% product quality rate',
-      color: '#059669',
-      bg: '#ecfdf5',
-    },
-    {
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2">
-          <circle cx="12" cy="12" r="10"/>
-          <line x1="2" y1="12" x2="22" y2="12"/>
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-        </svg>
-      ),
-      title: 'Fast Global Delivery',
-      sub: 'Flexible shipping options available',
-      color: '#2563eb',
-      bg: '#eff6ff',
-    },
-    {
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="2">
-          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-        </svg>
-      ),
-      title: 'Tailored Solutions',
-      sub: 'Product Idea-R&D-Launch-Upgrade',
-      color: '#7c3aed',
-      bg: '#f5f3ff',
-    },
-  ]
-
-  return (
-    <section style={{ padding: '64px 0 32px', background: '#fff' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
-          {items.map((item) => (
-            <div key={item.title} style={{
-              background: item.bg, borderRadius: '12px', padding: '28px 20px',
-              textAlign: 'center', border: `1px solid ${item.color}20`,
-              transition: 'all 0.2s',
-            }}
-              onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 4px 16px ${item.color}20` }}
-              onMouseLeave={(e) => { e.currentTarget.style.boxShadow = 'none' }}
-            >
-              <div style={{ width: '52px', height: '52px', borderRadius: '12px', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
-                {item.icon}
-              </div>
-              <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#1a2b4a', marginBottom: '6px' }}>{item.title}</h3>
-              <p style={{ fontSize: '0.82rem', color: '#6b7280', lineHeight: 1.5 }}>{item.sub}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ============ PRODUCT SERVICES (10 cards, JLCPCB exact) ============
-function ProductServices() {
-  const services = [
-    { name: 'FR-4 PCBs',          img: '/images/service-fr4.webp',          price: '$2',    unit: '/5 pcs',    lead: '24 hours',   desc: ['1-32 layers', 'Free POFV for 6+ layers', '10% impedance control'], color: '#059669' },
-    { name: 'Flexible PCBs',       img: '/images/service-flex.webp',         price: '$2',    unit: '/5 pcs',    lead: '5-6 days',   desc: ['Adhesive-free for 1-2 layer FPC', 'Supports PI, FR4, stainless steel', 'Supports EMI Shielding Film'], color: '#7c3aed' },
-    { name: 'Metal Core PCBs',      img: '/images/service-metal.webp',        price: '$4',    unit: '/5 pcs',    lead: '2-3 days',   desc: ['Aluminum core: 1W thermal conductivity', 'Copper core: 380W thermal', 'Ideal for high-power LED'], color: '#ea580c' },
-    { name: 'High-Freq PCBs',      img: '/images/service-hf.webp',          price: '$47',   unit: '/5 pcs',    lead: '4-5 days',   desc: ['Rogers/Teflon materials', 'Low Dk/Df for signal integrity', 'Ideal for 5G/RF/microwave'], color: '#dc2626' },
-    { name: 'PCB Assembly',         img: '/images/service-pcba.webp',        price: '$8',    unit: '/unit',     lead: '24 hours',   desc: ['SMT & THT assembly', '680,000+ in-stock parts', 'Free DFM check'], color: '#2563eb' },
-    { name: 'SMT Stencil',         img: '/images/service-stencil.webp',     price: '$3',    unit: '/pc',      lead: '12-48h',     desc: ['304 HTA stainless steel', '±0.003mm laser cutting', 'Electropolish, nano-coat'], color: '#d97706' },
-    { name: 'PCB Layout',          img: '/images/service-layout.webp',      price: '$0.46', unit: '/pin',      lead: '2 days',     desc: ['Up to 100,000+ pins, 50 layers', 'Rigid, flex, HDI, high-speed', 'Team of 50+ engineers'], color: '#0891b2' },
-    { name: '3D Printing',         img: '/images/service-3dp.webp',         price: '$0.30', unit: '/g',       lead: '2 days',     desc: ['SLA, MJF, SLM, FDM, SLS', 'Resin, Nylon, Metal, Plastic', 'Tolerance ±0.2mm'], color: '#4f46e5' },
-    { name: 'CNC Machining',       img: '/images/service-cnc.webp',        price: '$5',    unit: '/pc',      lead: '3 days',     desc: ['3-,4- & full 5-axis Milling', 'Aluminum, Steel, Copper, Plastic', 'Tolerance ±0.05mm'], color: '#b45309' },
-    { name: 'Mechatronic Parts',   img: '/images/service-mechatronic.webp', price: '$0.01', unit: '/pc',      lead: 'Same-Day',   desc: ['160+ categories, competitive prices', '10,000㎡ warehouse', 'Free 3D files & customization'], color: '#be185d' },
-  ]
-
-  return (
-    <section style={{ padding: '64px 0', background: '#f5f7fa' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#1a2b4a', marginBottom: '8px' }}>All-in-One Electronics & Mechanical Solutions</h2>
-          <p style={{ color: '#6b7280', fontSize: '0.95rem' }}>From PCB prototype to mass production — one trusted partner</p>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
-          {services.map((s) => (
-            <div key={s.name} style={{
-              border: '1px solid #e5e7eb', borderRadius: '12px', overflow: 'hidden',
-              transition: 'all 0.2s', cursor: 'pointer', background: '#fff',
-            }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)'
-                e.currentTarget.style.borderColor = s.color
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = 'none'
-                e.currentTarget.style.borderColor = '#e5e7eb'
-              }}
-            >
-              {/* Image area */}
-              <div style={{
-                height: '160px', background: '#f8fafc',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                overflow: 'hidden', borderBottom: `1px solid ${s.color}20`,
-              }}>
-                <img src={s.img} alt={s.name} style={{
-                  maxWidth: '100%', maxHeight: '100%',
-                  objectFit: 'cover', objectPosition: 'center',
-                }} loading="lazy" />
-              </div>
-
-              {/* Info */}
-              <div style={{ padding: '18px 20px' }}>
-                <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#1a2b4a', marginBottom: '8px' }}>{s.name}</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 12px', fontSize: '0.75rem', color: '#6b7280' }}>
-                  {s.desc.map((d, i) => (
-                    <li key={i} style={{ marginBottom: '4px', display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
-                      <span style={{ color: s.color, fontSize: '0.6rem', marginTop: '3px' }}>●</span>
-                      {d}
-                    </li>
-                  ))}
-                </ul>
-
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px', marginBottom: '12px' }}>
-                  <span style={{ fontSize: '1.3rem', fontWeight: 800, color: s.color }}>{s.price}</span>
-                  <span style={{ fontSize: '0.75rem', color: '#9ca3af' }}>{s.unit}</span>
-                </div>
-
-                <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '14px' }}>
-                  <span style={{ background: `${s.color}15`, color: s.color, fontSize: '0.72rem', fontWeight: 600, padding: '3px 8px', borderRadius: '4px' }}>
-                    ⏱ {s.lead}
-                  </span>
-                </div>
-
-                <Link href="/products" style={{
-                  display: 'block', textAlign: 'center',
-                  background: s.color, color: '#fff', fontWeight: 600, fontSize: '0.82rem',
-                  padding: '9px', borderRadius: '8px', textDecoration: 'none',
-                }}>
-                  Quote Now →
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+import { HeroBanner } from '@/components/HeroSection'
+import { CoreValues } from '@/components/CoreValues'
+import { ProductServices } from '@/components/ProductServices'
 
 // ============ STATISTICS (JLCPCB exact numbers) ============
 function Statistics() {
@@ -436,7 +19,9 @@ function Statistics() {
     <section style={{ background: 'linear-gradient(135deg, #0066cc 0%, #004999 100%)', padding: '64px 0 0' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginBottom: '8px' }}>Your Trusted Global PCB Manufacturer</h2>
+          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginBottom: '8px' }}>
+            Your Trusted Global PCB Manufacturer
+          </h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', marginBottom: '40px' }}>
           {stats.map((s) => (
@@ -447,7 +32,6 @@ function Statistics() {
             </div>
           ))}
         </div>
-        {/* Secondary stats */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: '80px', padding: '32px 0', borderTop: '1px solid rgba(255,255,255,0.15)' }}>
           {secondary.map((s) => (
             <div key={s.label} style={{ textAlign: 'center' }}>
@@ -461,7 +45,7 @@ function Statistics() {
   )
 }
 
-// ============ ORDER PROCESS (JLCPCB: Smart PCB & PCBA Ordering) ============
+// ============ ORDER PROCESS ============
 function OrderProcess() {
   const steps = [
     {
@@ -493,12 +77,13 @@ function OrderProcess() {
     <section style={{ padding: '64px 0', background: '#fff' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#1a2b4a', marginBottom: '8px' }}>Smart PCB & PCBA Ordering</h2>
+          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#1a2b4a', marginBottom: '8px' }}>
+            Smart PCB & PCBA Ordering
+          </h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '32px' }}>
           {steps.map((step, i) => (
             <div key={step.num} style={{ textAlign: 'center', position: 'relative', padding: '0 12px' }}>
-              {/* Connecting line (except last) */}
               {i < steps.length - 1 && (
                 <div style={{ position: 'absolute', top: '28px', left: '60%', right: '-40%', height: '2px', background: '#e5e7eb', zIndex: 0 }} />
               )}
@@ -514,10 +99,19 @@ function OrderProcess() {
           ))}
         </div>
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
-          <Link href="/products" style={{
-            display: 'inline-block', background: '#0066cc', color: '#fff', fontWeight: 700,
-            fontSize: '0.95rem', padding: '14px 40px', borderRadius: '8px', textDecoration: 'none',
-          }}>
+          <Link
+            href="/products"
+            style={{
+              display: 'inline-block',
+              background: '#0066cc',
+              color: '#fff',
+              fontWeight: 700,
+              fontSize: '0.95rem',
+              padding: '14px 40px',
+              borderRadius: '8px',
+              textDecoration: 'none',
+            }}
+          >
             Order Now
           </Link>
         </div>
@@ -526,37 +120,44 @@ function OrderProcess() {
   )
 }
 
-// ============ CUSTOMER CASES (JLCPCB: Raspberry Pi / Siemens / Midea) ============
+// ============ CUSTOMER CASES ============
 function CustomerCases() {
   const cases = [
     {
       name: 'Raspberry Pi',
       logo: '/images/case-raspberry-pi.webp',
-      text: 'JLCPCB supports Raspberry Pi\'s global community by providing agile manufacturing services that help streamline the path from design to functional prototype.',
+      text: 'DKPCB supports Raspberry Pi\'s global community by providing agile manufacturing services that help streamline the path from design to functional prototype.',
     },
     {
       name: 'Siemens',
       logo: '/images/case-siemens.webp',
-      text: 'JLCPCB meets the stringent quality requirements of Siemens\' industrial automation products through disciplined manufacturing and process control.',
+      text: 'DKPCB meets the stringent quality requirements of Siemens\' industrial automation products through disciplined manufacturing and process control.',
     },
     {
       name: 'Midea Group',
       logo: '/images/case-midea.webp',
-      text: 'JLCPCB serves as a manufacturing partner to Midea, delivering PCB solutions that balance performance and value for a diverse range of smart home products.',
+      text: 'DKPCB serves as a manufacturing partner to Midea, delivering PCB solutions that balance performance and value for a diverse range of smart home products.',
     },
   ]
   return (
     <section style={{ padding: '64px 0', background: '#f5f7fa' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#1a2b4a', marginBottom: '8px' }}>What Our Customers Say</h2>
+          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#1a2b4a', marginBottom: '8px' }}>
+            What Our Customers Say
+          </h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
           {cases.map((c) => (
             <div key={c.name} style={{
-              background: '#fff', borderRadius: '12px', padding: '32px 28px',
-              boxShadow: '0 1px 4px rgba(0,0,0,0.06)', border: '1px solid #e5e7eb',
-              display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+              background: '#fff',
+              borderRadius: '12px',
+              padding: '32px 28px',
+              boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
+              border: '1px solid #e5e7eb',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
             }}>
               <p style={{ fontSize: '0.88rem', color: '#374151', lineHeight: 1.7, marginBottom: '24px', fontStyle: 'italic' }}>
                 "{c.text}"
@@ -578,7 +179,7 @@ function CustomerCases() {
   )
 }
 
-// ============ BOTTOM NEWS / FAQ / BLOG (JLCPCB 3-column) ============
+// ============ BOTTOM NEWS / FAQ / BLOG ============
 function BottomNewsFAQBlog() {
   const news = [
     { title: 'DKPCB Showcases Quick-Turn PCB Innovations at Embedded World 2026', date: 'Mar 6, 2026' },
@@ -600,9 +201,11 @@ function BottomNewsFAQBlog() {
   return (
     <section style={{ padding: '64px 0', background: '#fff', borderTop: '1px solid #e5e7eb' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
-        <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#1a2b4a', marginBottom: '32px', textAlign: 'center' }}>DKPCB News, FAQs and Solutions</h2>
+        <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#1a2b4a', marginBottom: '32px', textAlign: 'center' }}>
+          DKPCB News, FAQs and Solutions
+        </h2>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr 1fr', gap: '40px', alignItems: 'start' }}>
-          {/* News Column */}
+          {/* News */}
           <div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1a2b4a', marginBottom: '20px', paddingBottom: '12px', borderBottom: '2px solid #0066cc' }}>News</h3>
             {news.map((n, i) => (
@@ -614,7 +217,7 @@ function BottomNewsFAQBlog() {
             <Link href="/news" style={{ fontSize: '0.82rem', color: '#0066cc', fontWeight: 600, textDecoration: 'none' }}>View All News →</Link>
           </div>
 
-          {/* FAQ Column */}
+          {/* FAQ */}
           <div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1a2b4a', marginBottom: '20px', paddingBottom: '12px', borderBottom: '2px solid #0066cc' }}>Frequently Asked Questions</h3>
             {faqs.map((f, i) => (
@@ -626,7 +229,7 @@ function BottomNewsFAQBlog() {
             <Link href="/faq" style={{ fontSize: '0.82rem', color: '#0066cc', fontWeight: 600, textDecoration: 'none' }}>View All FAQs →</Link>
           </div>
 
-          {/* Blog Column */}
+          {/* Blog */}
           <div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1a2b4a', marginBottom: '20px', paddingBottom: '12px', borderBottom: '2px solid #0066cc' }}>Blog</h3>
             {blogs.map((b, i) => (
@@ -644,7 +247,7 @@ function BottomNewsFAQBlog() {
   )
 }
 
-// ============ CTA SECTION (JLCPCB style) ============
+// ============ CTA SECTION ============
 function CTASection() {
   return (
     <section style={{ background: '#1a2b4a', padding: '64px 0' }}>
@@ -656,16 +259,33 @@ function CTASection() {
           Get an instant quote in seconds. No minimum order. No hidden fees.
         </p>
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/products" style={{
-            background: '#ff6b00', color: '#fff', fontWeight: 700, fontSize: '1rem',
-            padding: '14px 36px', borderRadius: '8px', textDecoration: 'none',
-          }}>
+          <Link
+            href="/products"
+            style={{
+              background: '#ff6b00',
+              color: '#fff',
+              fontWeight: 700,
+              fontSize: '1rem',
+              padding: '14px 36px',
+              borderRadius: '8px',
+              textDecoration: 'none',
+            }}
+          >
             Get Instant Quote →
           </Link>
-          <Link href="/contact" style={{
-            background: 'rgba(255,255,255,0.1)', color: '#fff', fontWeight: 600, fontSize: '1rem',
-            padding: '14px 36px', borderRadius: '8px', textDecoration: 'none', border: '1px solid rgba(255,255,255,0.2)',
-          }}>
+          <Link
+            href="/contact"
+            style={{
+              background: 'rgba(255,255,255,0.1)',
+              color: '#fff',
+              fontWeight: 600,
+              fontSize: '1rem',
+              padding: '14px 36px',
+              borderRadius: '8px',
+              textDecoration: 'none',
+              border: '1px solid rgba(255,255,255,0.2)',
+            }}
+          >
             Contact Us
           </Link>
         </div>
@@ -674,20 +294,18 @@ function CTASection() {
   )
 }
 
-// ============ MAIN PAGE (JLCPCB exact section order) ============
+// ============ MAIN PAGE ============
 export default function Home() {
   return (
-    <div style={{ background: '#ffffff', minHeight: '100vh' }}>
-      <main style={{ paddingTop: '0' }}>
-        <HeroBanner />
-        <CoreValues />
-        <ProductServices />
-        <Statistics />
-        <OrderProcess />
-        <CustomerCases />
-        <BottomNewsFAQBlog />
-        <CTASection />
-      </main>
+    <div style={{ background: '#ffffff' }}>
+      <HeroBanner />
+      <CoreValues />
+      <ProductServices />
+      <Statistics />
+      <OrderProcess />
+      <CustomerCases />
+      <BottomNewsFAQBlog />
+      <CTASection />
     </div>
   )
 }

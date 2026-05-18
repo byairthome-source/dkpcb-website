@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState<string | null>(null)
 
@@ -97,20 +99,38 @@ export default function Navbar() {
 
           {/* Nav Links */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flex: 1, justifyContent: 'center' }}>
-            {/* Products — 蓝色高亮 */}
+            {/* Home */}
+            <Link href="/" style={{
+              display: 'flex', alignItems: 'center', gap: '6px',
+              padding: '7px 16px', borderRadius: '4px',
+              fontSize: '0.88rem', fontWeight: 500,
+              color: pathname === '/' ? '#ffffff' : '#374151',
+              textDecoration: 'none',
+              background: pathname === '/' ? '#0066cc' : 'transparent',
+              transition: 'all 0.15s',
+            }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Home
+            </Link>
+
+            {/* Products */}
             <Link href="/products" style={{
               display: 'flex', alignItems: 'center', gap: '6px',
               padding: '7px 16px', borderRadius: '4px',
-              fontSize: '0.88rem', fontWeight: 500, color: '#ffffff',
-              textDecoration: 'none', background: '#0066cc',
+              fontSize: '0.88rem', fontWeight: 500,
+              color: pathname.startsWith('/products') ? '#ffffff' : '#374151',
+              textDecoration: 'none',
+              background: pathname.startsWith('/products') ? '#0066cc' : 'transparent',
+              transition: 'all 0.15s',
             }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
               Products
             </Link>
 
-            <Link href="/products" style={{
+            <Link href="/about" style={{
               padding: '8px 16px', borderRadius: '6px',
-              fontSize: '0.88rem', fontWeight: 500, color: '#374151',
+              fontSize: '0.88rem', fontWeight: 500,
+              color: pathname.startsWith('/about') ? '#0066cc' : '#374151',
               textDecoration: 'none', transition: 'all 0.15s',
             }}>
               Capabilities
@@ -121,7 +141,8 @@ export default function Navbar() {
               <span style={{
                 display: 'flex', alignItems: 'center', gap: '4px',
                 padding: '8px 16px', borderRadius: '6px',
-                fontSize: '0.88rem', fontWeight: 500, color: '#374151',
+                fontSize: '0.88rem', fontWeight: 500,
+                color: pathname.startsWith('/contact') ? '#0066cc' : '#374151',
                 cursor: 'pointer', background: menuOpen === 'support' ? '#f0f7ff' : 'transparent',
               }}>
                 Support
@@ -153,7 +174,8 @@ export default function Navbar() {
               <span style={{
                 display: 'flex', alignItems: 'center', gap: '4px',
                 padding: '8px 16px', borderRadius: '6px',
-                fontSize: '0.88rem', fontWeight: 500, color: '#374151',
+                fontSize: '0.88rem', fontWeight: 500,
+                color: pathname.startsWith('/about') ? '#0066cc' : '#374151',
                 cursor: 'pointer', background: menuOpen === 'about' ? '#f0f7ff' : 'transparent',
               }}>
                 About Us
