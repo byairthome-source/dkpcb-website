@@ -189,7 +189,23 @@ const banners = [
 export function HeroBanner() {
   const [active, setActive] = useState(0)
   const [loaded, setLoaded] = useState<number[]>([])
-  const [progress, setProgress] = useState(0)  // 0~100
+  const [progress, setProgress] = useState(0)
+
+  // Sync navbar background with banner slide
+  useEffect(() => {
+    const b = banners[active]
+    document.documentElement.style.setProperty('--nav-bg', b.bgGradient)
+    document.documentElement.style.setProperty('--nav-text', b.textColor)
+    document.documentElement.style.setProperty('--nav-text-muted', 'rgba(255,255,255,0.75)')
+    document.documentElement.style.setProperty('--nav-border', 'rgba(255,255,255,0.15)')
+    // Cleanup when unmount
+    return () => {
+      document.documentElement.style.removeProperty('--nav-bg')
+      document.documentElement.style.removeProperty('--nav-text')
+      document.documentElement.style.removeProperty('--nav-text-muted')
+      document.documentElement.style.removeProperty('--nav-border')
+    }
+  }, [active])  // 0~100
 
   const INTERVAL = 5000  // 每张5秒
 

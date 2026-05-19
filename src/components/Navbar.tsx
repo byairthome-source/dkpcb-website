@@ -79,15 +79,15 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Nav */}
+      {/* Main Nav - background synced with banner slide via CSS variable */}
       <nav style={{
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        background: '#ffffff',
-        borderBottom: '1px solid #e5e7eb',
+        background: 'var(--nav-bg, #ffffff)',
+        borderBottom: '1px solid rgba(255,255,255,0.1)',
         boxShadow: scrolled ? '0 2px 12px rgba(0,0,0,0.06)' : 'none',
-        transition: 'box-shadow 0.3s',
+        transition: 'background 0.8s ease-in-out, box-shadow 0.3s',
       }}>
         <div style={{
           maxWidth: '1200px',
@@ -102,8 +102,8 @@ export default function Navbar() {
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
             <img src="/pages/dkpcb-logo.png" alt="DKPCB" style={{ height: '34px', width: 'auto' }} />
             <div>
-              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1a2332', lineHeight: 1 }}>DKPCB</div>
-              <div style={{ fontSize: '0.6rem', color: '#8896a6', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Solutions</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--nav-text, #1a2332)', lineHeight: 1, transition: 'color 0.3s' }}>DKPCB</div>
+              <div style={{ fontSize: '0.6rem', color: 'var(--nav-text-muted, #8896a6)', letterSpacing: '0.1em', textTransform: 'uppercase', transition: 'color 0.3s' }}>Solutions</div>
             </div>
           </Link>
 
@@ -114,12 +114,12 @@ export default function Navbar() {
               display: 'flex', alignItems: 'center', gap: '6px',
               padding: '7px 16px', borderRadius: '4px',
               fontSize: '0.88rem', fontWeight: 500,
-              color: pathname === '/' ? '#ffffff' : '#374151',
+              color: pathname === '/' ? 'var(--nav-text, #ffffff)' : 'var(--nav-text-muted, #374151)',
               textDecoration: 'none',
-              background: pathname === '/' ? '#0066cc' : 'transparent',
+              background: pathname === '/' ? 'rgba(0,102,204,0.85)' : 'transparent',
               transition: 'all 0.15s',
             }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--nav-text-muted, currentColor)" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
               Home
             </Link>
 
@@ -128,12 +128,12 @@ export default function Navbar() {
               display: 'flex', alignItems: 'center', gap: '6px',
               padding: '7px 16px', borderRadius: '4px',
               fontSize: '0.88rem', fontWeight: 500,
-              color: pathname.startsWith('/products') ? '#ffffff' : '#374151',
+              color: pathname.startsWith('/products') ? 'var(--nav-text, #ffffff)' : 'var(--nav-text-muted, #374151)',
               textDecoration: 'none',
-              background: pathname.startsWith('/products') ? '#0066cc' : 'transparent',
+              background: pathname.startsWith('/products') ? 'rgba(0,102,204,0.85)' : 'transparent',
               transition: 'all 0.15s',
             }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--nav-text-muted, currentColor)" strokeWidth="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
               Products
             </Link>
 
@@ -141,9 +141,9 @@ export default function Navbar() {
               display: 'flex', alignItems: 'center', gap: '6px',
               padding: '7px 16px', borderRadius: '4px',
               fontSize: '0.88rem', fontWeight: 500,
-              color: pathname.startsWith('/about') ? '#ffffff' : '#374151',
+              color: pathname.startsWith('/about') ? 'var(--nav-text, #ffffff)' : 'var(--nav-text-muted, #374151)',
               textDecoration: 'none',
-              background: pathname.startsWith('/about') ? '#0066cc' : 'transparent',
+              background: pathname.startsWith('/about') ? 'rgba(0,102,204,0.85)' : 'transparent',
               transition: 'all 0.15s',
             }}>
               Capabilities
@@ -155,13 +155,13 @@ export default function Navbar() {
                 display: 'flex', alignItems: 'center', gap: '4px',
                 padding: '7px 16px', borderRadius: '4px',
                 fontSize: '0.88rem', fontWeight: 500,
-                color: '#374151',
+                color: 'var(--nav-text-muted, #374151)',
                 cursor: 'pointer',
-                background: menuOpen === 'support' ? '#f0f7ff' : 'transparent',
+                background: menuOpen === 'support' ? 'rgba(255,255,255,0.12)' : 'transparent',
                 transition: 'all 0.15s',
               }}>
                 Support
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--nav-text-muted, currentColor)" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg>
               </span>
               {menuOpen === 'support' && (
                 <div style={{
@@ -193,13 +193,13 @@ export default function Navbar() {
                 display: 'flex', alignItems: 'center', gap: '4px',
                 padding: '7px 16px', borderRadius: '4px',
                 fontSize: '0.88rem', fontWeight: 500,
-                color: '#374151',
+                color: 'var(--nav-text-muted, #374151)',
                 cursor: 'pointer',
-                background: menuOpen === 'about' ? '#f0f7ff' : 'transparent',
+                background: menuOpen === 'about' ? 'rgba(255,255,255,0.12)' : 'transparent',
                 transition: 'all 0.15s',
               }}>
                 About Us
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--nav-text-muted, currentColor)" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg>
               </span>
               {menuOpen === 'about' && (
                 <div style={{
@@ -230,25 +230,25 @@ export default function Navbar() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
             {/* Search */}
             <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--nav-text-muted, #6b7280)" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             </button>
             {/* Cart */}
             <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--nav-text-muted, #6b7280)" strokeWidth="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
             </button>
             {/* Order Now */}
             <Link href="/products" style={{
               display: 'inline-flex', alignItems: 'center',
-              background: '#fff', color: '#0066cc', fontWeight: 600, fontSize: '0.82rem',
+              background: 'transparent', color: 'var(--nav-text, #0066cc)', fontWeight: 600, fontSize: '0.82rem',
               padding: '7px 18px', borderRadius: '20px', textDecoration: 'none',
-              border: '1px solid #0066cc', transition: 'all 0.2s',
+              border: '1px solid var(--nav-text, #0066cc)', transition: 'all 0.2s',
             }}>
               Order Now
             </Link>
             {/* Sign In */}
             <Link href="/login" style={{
               display: 'inline-flex', alignItems: 'center',
-              background: '#0066cc', color: '#fff', fontWeight: 600, fontSize: '0.82rem',
+              background: 'var(--nav-text, #0066cc)', color: 'var(--nav-bg, #fff)', fontWeight: 600, fontSize: '0.82rem',
               padding: '7px 18px', borderRadius: '20px', textDecoration: 'none',
               transition: 'all 0.2s',
             }}>
