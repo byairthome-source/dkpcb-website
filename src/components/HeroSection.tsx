@@ -189,15 +189,40 @@ const banners = [
 export function HeroBanner() {
   const [active, setActive] = useState(0)
   const [loaded, setLoaded] = useState<number[]>([])
+  const [progress, setProgress] = useState(0)  // 0~100
+
+  const INTERVAL = 5000  // 每张5秒
 
   // Preload first slide
   useEffect(() => { setLoaded([0]) }, [])
 
-  // Auto-rotate
+  // Auto-rotate + progress timer
   useEffect(() => {
-    const t = setInterval(() => setActive(a => (a + 1) % banners.length), 5000)
-    return () => clearInterval(t)
-  }, [])
+    setProgress(0)
+    const startTime = Date.now()
+
+    // 进度更新：每50ms刷新一次（约20fps，够流畅）
+    const rafId = { current: 0 }
+    const tick = () => {
+      const elapsed = Date.now() - startTime
+      const pct = Math.min((elapsed / INTERVAL) * 100, 100)
+      setProgress(pct)
+      if (pct < 100) {
+        rafId.current = window.setTimeout(tick, 50)
+      }
+    }
+    rafId.current = window.setTimeout(tick, 50)
+
+    // 整体切换
+    const t = setInterval(() => {
+      setActive(a => (a + 1) % banners.length)
+    }, INTERVAL)
+
+    return () => {
+      clearInterval(t)
+      clearTimeout(rafId.current)
+    }
+  }, [active])
 
   // Track loaded images
   useEffect(() => {
@@ -457,32 +482,60 @@ export function HeroBanner() {
         </svg>
       </button>
 
-      {/* Dot indicators */}
+      {/* Progress bar indicators */}
       <div style={{
         position: 'absolute',
         bottom: '140px',
         left: '50%',
         transform: 'translateX(-50%)',
         display: 'flex',
-        gap: '10px',
+        gap: '8px',
         zIndex: 10,
       }}>
         {banners.map((_, i) => (
           <button
             key={i}
             onClick={() => setActive(i)}
+            aria-label={`Go to slide ${i + 1}`}
             style={{
-              width: i === active ? '28px' : '10px',
-              height: '10px',
-              borderRadius: '5px',
+              position: 'relative',
+              width: '72px',
+              height: '4px',
+              borderRadius: '2px',
               border: 'none',
               cursor: 'pointer',
-              background: i === active ? '#ffffff' : 'rgba(255,255,255,0.5)',
-              transition: 'all 0.4s ease',
-              boxShadow: i === active ? '0 2px 8px rgba(0,0,0,0.3)' : 'none',
+              background: 'rgba(255,255,255,0.35)',
+              padding: 0,
+              overflow: 'hidden',
             }}
-            aria-label={`Go to slide ${i + 1}`}
-          />
+          >
+            {/* 已播完的 slide 全白填满 */}
+            {i < active && (
+              <span style={{
+                display: 'block',
+                position: 'absolute',
+                top: 0, left: 0,
+                width: '100%',
+                height: '100%',
+                background: '#ffffff',
+                borderRadius: '2px',
+              }} />
+            )}
+            {/* 当前 slide 按进度填充 */}
+            {i === active && (
+              <span style={{
+                display: 'block',
+                position: 'absolute',
+                top: 0, left: 0,
+                width: `${progress}%`,
+                height: '100%',
+                background: '#ffffff',
+                borderRadius: '2px',
+                // 不用 transition，由 setInterval 控制平滑
+              }} />
+            )}
+            {/* 未播的 slide 空轨道（已由父元素背景色体现） */}
+          </button>
         ))}
       </div>
 
