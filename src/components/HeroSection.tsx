@@ -288,7 +288,7 @@ export function HeroBanner() {
         />
       )}
       
-      {/* Color gradient overlay - changes per slide */}
+      {/* Color gradient overlay - changes per slide (direct overlay, no blend) */}
       <div
         style={{
           position: 'absolute',
@@ -297,14 +297,13 @@ export function HeroBanner() {
           width: '100%',
           height: '100%',
           background: b.bgGradient,
-          opacity: 0.75,
-          mixBlendMode: 'multiply',
+          opacity: 0.92,
           zIndex: 1,
           transition: 'background 0.8s ease-in-out',
         }}
       />
 
-      {/* Dark overlay for text readability */}
+      {/* Subtle dark overlay for text readability */}
       <div
         style={{
           position: 'absolute',
@@ -312,7 +311,7 @@ export function HeroBanner() {
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'rgba(0, 0, 0, 0.35)',
+          background: 'rgba(0, 0, 0, 0.2)',
           zIndex: 2,
         }}
       />

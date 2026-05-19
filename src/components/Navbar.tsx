@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -8,12 +8,22 @@ export default function Navbar() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState<string | null>(null)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const openMenu = (menu: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setMenuOpen(menu)
+  }
+
+  const closeMenu = () => {
+    closeTimer.current = setTimeout(() => setMenuOpen(null), 300)
+  }
 
   const menus = {
     support: [
@@ -140,7 +150,7 @@ export default function Navbar() {
             </Link>
 
             {/* Support Dropdown */}
-            <div style={{ position: 'relative' }} onMouseEnter={() => setMenuOpen('support')} onMouseLeave={() => setMenuOpen(null)}>
+            <div style={{ position: 'relative' }} onMouseEnter={() => openMenu('support')} onMouseLeave={closeMenu}>
               <span style={{
                 display: 'flex', alignItems: 'center', gap: '4px',
                 padding: '7px 16px', borderRadius: '4px',
@@ -160,7 +170,10 @@ export default function Navbar() {
                   boxShadow: '0 8px 30px rgba(0,0,0,0.12)',
                   border: '1px solid #e5e7eb',
                   padding: '8px', minWidth: '220px', zIndex: 200,
-                }}>
+                }}
+                onMouseEnter={() => openMenu('support')}
+                onMouseLeave={closeMenu}
+                >
                   {menus.support.map((s) => (
                     <Link key={s.label} href="/contact" style={{
                       display: 'block', padding: '10px 14px', borderRadius: '6px',
@@ -175,7 +188,7 @@ export default function Navbar() {
             </div>
 
             {/* About Us Dropdown */}
-            <div style={{ position: 'relative' }} onMouseEnter={() => setMenuOpen('about')} onMouseLeave={() => setMenuOpen(null)}>
+            <div style={{ position: 'relative' }} onMouseEnter={() => openMenu('about')} onMouseLeave={closeMenu}>
               <span style={{
                 display: 'flex', alignItems: 'center', gap: '4px',
                 padding: '7px 16px', borderRadius: '4px',
@@ -195,7 +208,10 @@ export default function Navbar() {
                   boxShadow: '0 8px 30px rgba(0,0,0,0.12)',
                   border: '1px solid #e5e7eb',
                   padding: '8px', minWidth: '220px', zIndex: 200,
-                }}>
+                }}
+                onMouseEnter={() => openMenu('about')}
+                onMouseLeave={closeMenu}
+                >
                   {menus.about.map((s) => (
                     <Link key={s.label} href={s.label === 'Contact Us' ? '/contact' : '/about'} style={{
                       display: 'block', padding: '10px 14px', borderRadius: '6px',
