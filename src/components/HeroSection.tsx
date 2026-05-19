@@ -125,7 +125,7 @@ const banners = [
     ],
     cta: 'Learn More',
     ctaLink: '/about',
-    overlayOpacity: 0.5,
+    bgGradient: 'linear-gradient(135deg, #0f1b3a 0%, #1a3a6b 50%, #0d2137 100%)',
     textColor: '#ffffff',
   },
   {
@@ -139,7 +139,7 @@ const banners = [
     ],
     cta: 'Get Coupon Now',
     ctaLink: '/products',
-    overlayOpacity: 0.5,
+    bgGradient: 'linear-gradient(135deg, #2d1b4e 0%, #4a1d3a 50%, #1e1b3a 100%)',
     textColor: '#ffffff',
   },
   {
@@ -153,7 +153,7 @@ const banners = [
     ],
     cta: 'Learn More',
     ctaLink: '/products',
-    overlayOpacity: 0.5,
+    bgGradient: 'linear-gradient(135deg, #0d2f2f 0%, #1a4a4a 50%, #0d2436 100%)',
     textColor: '#ffffff',
   },
   {
@@ -167,7 +167,7 @@ const banners = [
     ],
     cta: 'Order Now',
     ctaLink: '/products',
-    overlayOpacity: 0.5,
+    bgGradient: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b3a 100%)',
     textColor: '#ffffff',
   },
   {
@@ -181,7 +181,7 @@ const banners = [
     ],
     cta: 'Get Coupon Now',
     ctaLink: '/products',
-    overlayOpacity: 0.5,
+    bgGradient: 'linear-gradient(135deg, #3a1d0d 0%, #5c2e1a 50%, #2a1810 100%)',
     textColor: '#ffffff',
   },
 ]
@@ -288,7 +288,7 @@ export function HeroBanner() {
         />
       )}
       
-      {/* Dark overlay */}
+      {/* Color gradient overlay - changes per slide */}
       <div
         style={{
           position: 'absolute',
@@ -296,15 +296,31 @@ export function HeroBanner() {
           left: 0,
           width: '100%',
           height: '100%',
-          background: `rgba(0, 0, 0, ${b.overlayOpacity})`,
+          background: b.bgGradient,
+          opacity: 0.75,
+          mixBlendMode: 'multiply',
           zIndex: 1,
+          transition: 'background 0.8s ease-in-out',
+        }}
+      />
+
+      {/* Dark overlay for text readability */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'rgba(0, 0, 0, 0.35)',
+          zIndex: 2,
         }}
       />
 
       {/* Main content - centered */}
       <div style={{
         position: 'relative',
-        zIndex: 2,
+        zIndex: 3,
         width: '100%',
         height: '100%',
         display: 'flex',
