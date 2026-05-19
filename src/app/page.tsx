@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { HeroBanner } from '@/components/HeroSection'
+import { HeroBanner, QuickQuote } from '@/components/HeroSection'
 import { CoreValues } from '@/components/CoreValues'
 import { ProductServices } from '@/components/ProductServices'
 
@@ -298,7 +298,26 @@ function CTASection() {
 export default function Home() {
   return (
     <div style={{ background: '#ffffff' }}>
-      <HeroBanner />
+      {/* Hero Banner + QuickQuote wrapper */}
+      <div style={{ position: 'relative' }}>
+        <HeroBanner />
+        {/* QuickQuote 悬浮在轮播图底部，不受 overflow:hidden 影响 */}
+        <div style={{
+          position: 'absolute',
+          bottom: '-40px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '100%',
+          maxWidth: '1100px',
+          padding: '0 40px',
+          zIndex: 20,
+          boxSizing: 'border-box',
+        }}>
+          <QuickQuote />
+        </div>
+      </div>
+      {/* 留出 QuickQuote 悬浮的空间 */}
+      <div style={{ height: '60px' }} />
       <CoreValues />
       <ProductServices />
       <Statistics />

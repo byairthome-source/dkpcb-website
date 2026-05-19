@@ -310,7 +310,7 @@ export function HeroBanner() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '80px 60px 180px',
+        padding: '80px 60px 120px',
         boxSizing: 'border-box',
       }}>
         <div style={{
@@ -539,19 +539,6 @@ export function HeroBanner() {
         ))}
       </div>
 
-      {/* Quick Quote Bar */}
-      <div style={{
-        position: 'absolute',
-        bottom: '-40px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '100%',
-        maxWidth: '1100px',
-        padding: '0 40px',
-        zIndex: 20,
-      }}>
-        <QuickQuote />
-      </div>
     </div>
   )
 }

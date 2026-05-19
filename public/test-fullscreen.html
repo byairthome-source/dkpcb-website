@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fullscreen Carousel Test</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: 0;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .slide-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .slide-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .slide-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide-content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 40px;
+      background: white;
+      color: #0066cc;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arrow-left {
+      left: 30px;
+    }
+
+    .arrow-right {
+      right: 30px;
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      border: none;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="carousel">
+    <!-- Slide 1 -->
+    <div class="slide active" data-index="0">
+      <div class="slide-bg" style="background-image: url('/images/hero-1.webp')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <h1>Welcome to LIFELECT</h1>
+        <p>Premium PCB Manufacturing Services</p>
+        <a href="#" class="btn">Get Started →</a>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide" data-index="1">
+      <div class="slide-bg" style="background-image: url('/images/hero-2.webp')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <h1>High-Quality Products</h1>
+        <p>Reliable and Durable Solutions</p>
+        <a href="#" class="btn">Learn More →</a>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" data-index="2">
+      <div class="slide-bg" style="background-image: url('/images/hero-3.webp')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <h1>Fast Delivery</h1>
+        <p>Quick Turnaround Times</p>
+        <a href="#" class="btn">Order Now →</a>
+      </div>
+    </div>
+
+    <!-- Arrows -->
+    <button class="arrow arrow-left" onclick="prevSlide()">‹</button>
+    <button class="arrow arrow-right" onclick="nextSlide()">›</button>
+
+    <!-- Dots -->
+    <div class="dots">
+      <button class="dot active" onclick="goToSlide(0)"></button>
+      <button class="dot" onclick="goToSlide(1)"></button>
+      <button class="dot" onclick="goToSlide(2)"></button>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      
+      currentSlide = (n + slides.length) % slides.length;
+      
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    function goToSlide(n) {
+      showSlide(n);
+    }
+
+    // Auto-rotate every 5 seconds
+    setInterval(nextSlide, 5000);
+  </script>
+</body>
+</html>
